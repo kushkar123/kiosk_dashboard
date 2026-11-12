@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Command Center Kiosk</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #0d0e12;
+            color: #ffffff;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            margin: 0;
+            padding: 1.5vw 2vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #252836;
+            padding-bottom: 12px;
+            margin-bottom: 16px;
+        }
+        .time-box h1 {
+            margin: 0;
+            font-size: 3.2vw;
+            font-weight: 700;
+            letter-spacing: -1px;
+            line-height: 1;
+        }
+        .time-box h3 {
+            margin: 5px 0 0 0;
+            color: #8f95b2;
+            font-size: 1.1vw;
+            font-weight: 500;
+        }
+
+        /* Bareilly Weather Badge */
+        .weather-box {
+            background: linear-gradient(135deg, #1b2030, #141824);
+            border: 1px solid #2e3650;
+            border-radius: 10px;
+            padding: 10px 18px;
+            text-align: center;
+            min-width: 20%;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        .weather-city {
+            font-size: 1.1vw;
+            font-weight: 700;
+            color: #79a8ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+        .weather-temp-cond {
+            font-size: 1.8vw;
+            font-weight: 700;
+            margin: 3px 0;
+            color: #ffffff;
+        }
+        .weather-cond {
+            font-size: 1vw;
+            color: #b0b8d6;
+            font-weight: 400;
+            margin-left: 6px;
+        }
+        .weather-aqi {
+            font-size: 0.95vw;
+            color: #9aa2c2;
+        }
+        .aqi-pill {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-weight: bold;
+            font-size: 0.9vw;
+            margin-left: 4px;
+        }
+        .aqi-good { background: rgba(0, 230, 118, 0.2); color: #00e676; border: 1px solid #00e676; }
+        .aqi-moderate { background: rgba(255, 214, 0, 0.2); color: #ffd600; border: 1px solid #ffd600; }
+        .aqi-unhealthy-sens { background: rgba(255, 145, 0, 0.2); color: #ff9100; border: 1px solid #ff9100; }
+        .aqi-unhealthy { background: rgba(255, 82, 82, 0.2); color: #ff5252; border: 1px solid #ff5252; }
+
+        .flashcard {
+            border: 1px solid #2e3650;
+            padding: 10px 18px;
+            border-radius: 10px;
+            text-align: right;
+            width: 35%;
+            background: linear-gradient(135deg, #181d2a, #131722);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        .flashcard h2 {
+            margin: 0;
+            font-size: 1.8vw;
+            color: #ffca28;
+            font-weight: 700;
+        }
+        .flashcard p {
+            margin: 3px 0 0 0;
+            font-size: 1vw;
+            color: #d1d5db;
+            font-style: italic;
+        }
+
+        .grid {
+            display: flex;
+            flex: 1;
+            gap: 1.5vw;
+            min-height: 0;
+        }
+        .col {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: #131722;
+            border: 1px solid #22283a;
+            border-radius: 10px;
+            padding: 14px 16px;
+            overflow: hidden;
+        }
+        h2.section-title {
+            font-size: 1.35vw;
+            margin: 0 0 10px 0;
+            border-bottom: 2px solid #252c40;
+            padding-bottom: 8px;
+            color: #e2e8f0;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .section-badge {
+            font-size: 0.75vw;
+            font-weight: 600;
+            padding: 3px 8px;
+            border-radius: 4px;
+            background: #1e2638;
+            color: #60a5fa;
+            text-transform: uppercase;
+        }
+
+        /* Stock Movers 2-Column Layout */
+        .movers-container {
+            display: flex;
+            gap: 10px;
+            flex: 1;
+            min-height: 0;
+        }
+        .movers-col {
+            flex: 1;
+            background: #0e111a;
+            border-radius: 8px;
+            padding: 10px;
+            border: 1px solid #1c2233;
+            display: flex;
+            flex-direction: column;
+        }
+        .movers-hdr {
+            font-size: 0.95vw;
+            font-weight: 700;
+            padding-bottom: 6px;
+            margin-bottom: 8px;
+            border-bottom: 1px solid #20273c;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .movers-hdr.gainers { color: #10b981; }
+        .movers-hdr.losers { color: #f43f5e; }
+
+        .stock-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 7px 8px;
+            border-radius: 6px;
+            margin-bottom: 6px;
+            background: #151926;
+            font-size: 0.95vw;
+        }
+        .stock-sym {
+            font-weight: 700;
+            color: #f1f5f9;
+        }
+        .stock-price {
+            color: #94a3b8;
+            font-size: 0.9vw;
+            margin-left: auto;
+            margin-right: 10px;
+        }
+        .stock-chg {
+            font-weight: 700;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.85vw;
+            min-width: 60px;
+            text-align: right;
+        }
+        .chg-pos { background: rgba(16, 185, 129, 0.15); color: #10b981; }
+        .chg-neg { background: rgba(244, 63, 94, 0.15); color: #f43f5e; }
+
+        /* News & Trends Items */
+        .feed-scroll {
+            overflow-y: auto;
+            flex: 1;
+            padding-right: 4px;
+        }
+        .feed-scroll::-webkit-scrollbar { width: 4px; }
+        .feed-scroll::-webkit-scrollbar-thumb { background: #262e45; border-radius: 4px; }
+
+        .list-item {
+            font-size: 0.98vw;
+            margin-bottom: 10px;
+            line-height: 1.4;
+            color: #cbd5e1;
+            padding: 8px 10px;
+            border-radius: 6px;
+            background: #0f131d;
+            border-left: 3px solid #3b82f6;
+        }
+        .list-item.trend-item {
+            border-left-color: #f59e0b;
+        }
+        .list-item.breaking-item {
+            border-left-color: #ef4444;
+        }
+
+        .sub-header {
+            font-size: 1vw;
+            font-weight: 700;
+            color: #f59e0b;
+            margin: 6px 0 8px 0;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .sub-header.breaking {
+            color: #ef4444;
+            margin-top: 14px;
+        }
+
+        /* Bottom Ticker Bar */
+        .ticker-bar {
+            background: linear-gradient(180deg, #131724 0%, #0d101a 100%);
+            padding: 13px 2vw;
+            margin-top: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 12px;
+            border: 1px solid #20273c;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        }
+        .ticker-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .ticker-name {
+            font-size: 0.9vw;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            color: #94a3b8;
+        }
+        .ticker-val {
+            font-size: 1.12vw;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: -0.2px;
+        }
+        .ticker-badge {
+            font-size: 0.82vw;
+            font-weight: 700;
+            padding: 2px 7px;
+            border-radius: 4px;
+            letter-spacing: 0.2px;
+        }
+        .ticker-badge.positive {
+            background: rgba(16, 185, 129, 0.15);
+            color: #10b981;
+        }
+        .ticker-badge.negative {
+            background: rgba(244, 63, 94, 0.15);
+            color: #f43f5e;
+        }
+        .ticker-sep {
+            width: 1px;
+            height: 20px;
+            background: #252e45;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="time-box">
+            <h1 id="clock">--:--</h1>
+            <h3 id="date-mode">Loading...</h3>
+        </div>
+
+        <!-- Dedicated Bareilly Weather & AQI Center Widget -->
+        <div class="weather-box" id="weather-box">
+            <div class="weather-city">📍 Bareilly, UP</div>
+            <div class="weather-temp-cond">
+                <span id="bareilly-temp">--°C</span>
+                <span class="weather-cond" id="bareilly-cond">Loading...</span>
+            </div>
+            <div class="weather-aqi">
+                Air Quality: <span id="bareilly-aqi" class="aqi-pill aqi-moderate">AQI --</span>
+            </div>
+        </div>
+
+        <div class="flashcard">
+            <h2 id="ger-word">Laden...</h2>
+            <p id="ger-eng">Loading...</p>
+            <p id="ger-sent"></p>
+        </div>
+    </div>
+
+    <div class="grid">
+        <!-- Column 1: Primary Focus (Dynamic Market Movers) -->
+        <div class="col">
+            <h2 class="section-title">
+                Primary Focus
+                <span class="section-badge" id="primary-market-badge">Market Movers</span>
+            </h2>
+            <div class="movers-container">
+                <div class="movers-col">
+                    <div class="movers-hdr gainers">▲ Top 6 Gainers</div>
+                    <div id="nasdaq-gainers" class="feed-scroll"></div>
+                </div>
+                <div class="movers-col">
+                    <div class="movers-hdr losers">▼ Top 6 Losers</div>
+                    <div id="nasdaq-losers" class="feed-scroll"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Column 2: News & Buzz -->
+        <div class="col">
+            <h2 class="section-title">
+                News & Buzz
+                <span class="section-badge" id="news-mode-badge">Market News</span>
+            </h2>
+            <div id="news-data" class="feed-scroll"></div>
+        </div>
+
+        <!-- Column 3: Google Trends & India Breaking News -->
+        <div class="col">
+            <h2 class="section-title">
+                Trends & India Wire
+                <span class="section-badge">Live Feeds</span>
+            </h2>
+            <div class="feed-scroll">
+                <div class="sub-header">🔥 Top 5 Viral Trends (India)</div>
+                <div id="trends-data"></div>
+
+                <div class="sub-header breaking">⚡ Top 5 Breaking News (India)</div>
+                <div id="breaking-india-data"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Ticker Bar in Indian Rupee (INR) -->
+    <div class="ticker-bar" id="ticker">
+        <div class="ticker-item"><span class="ticker-name">Loading ticker...</span></div>
+    </div>
+
+    <script>
+        function updateFlashcard() {
+            fetch('/api/flashcard')
+                .then(r => r.json())
+                .then(data => {
+                    document.getElementById('ger-word').innerText = data.german;
+                    document.getElementById('ger-eng').innerText = data.english;
+                    document.getElementById('ger-sent').innerText = data.sentence;
+                })
+                .catch(() => {});
+        }
+
+        function getAqiClass(aqi) {
+            const val = parseInt(aqi);
+            if (isNaN(val)) return 'aqi-moderate';
+            if (val <= 50) return 'aqi-good';
+            if (val <= 100) return 'aqi-moderate';
+            if (val <= 150) return 'aqi-unhealthy-sens';
+            return 'aqi-unhealthy';
+        }
+
+        function renderStockRows(stocks, containerId, currency) {
+            const container = document.getElementById(containerId);
+            if (!stocks || stocks.length === 0) {
+                container.innerHTML = '<div style="color:#64748b; padding:10px; font-size:0.9vw;">No data available</div>';
+                return;
+            }
+            let html = '';
+            stocks.forEach(s => {
+                const isPos = s.change >= 0;
+                const sign = isPos ? '+' : '';
+                const chgClass = isPos ? 'chg-pos' : 'chg-neg';
+                const formattedPrice = (currency === '₹')
+                    ? `₹${s.price.toLocaleString('en-IN')}`
+                    : `$${s.price.toFixed(2)}`;
+                html += `
+                    <div class="stock-row">
+                        <span class="stock-sym">${s.name}</span>
+                        <span class="stock-price">${formattedPrice}</span>
+                        <span class="stock-chg ${chgClass}">${sign}${s.change.toFixed(2)}%</span>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+        }
+
+        function updateDashboard() {
+            fetch('/api/data')
+                .then(r => r.json())
+                .then(data => {
+                    // Time, Date and Mode
+                    document.getElementById('clock').innerText = data.time;
+                    document.getElementById('date-mode').innerText = data.date + " • " + data.mode;
+                    
+                    if (data.news_badge) {
+                        document.getElementById('news-mode-badge').innerText = data.news_badge;
+                    }
+
+                    // Bareilly Weather & AQI Update
+                    if (data.weather) {
+                        document.getElementById('bareilly-temp').innerText = data.weather.temp;
+                        document.getElementById('bareilly-cond').innerText = data.weather.condition;
+                        const aqiElem = document.getElementById('bareilly-aqi');
+                        aqiElem.innerText = "AQI " + data.weather.aqi;
+                        aqiElem.className = "aqi-pill " + getAqiClass(data.weather.aqi);
+                    }
+
+                    // Column 1: Primary Focus (Dynamic Market Movers: Nifty 50 or Nasdaq 100)
+                    if (data.primary_focus) {
+                        document.getElementById('primary-market-badge').innerText = data.primary_focus.market;
+                        renderStockRows(data.primary_focus.gainers, 'nasdaq-gainers', data.primary_focus.currency);
+                        renderStockRows(data.primary_focus.losers, 'nasdaq-losers', data.primary_focus.currency);
+                    }
+
+                    // Column 2: News & Buzz (Dynamic based on Market Hours)
+                    let newsHtml = '';
+                    if (data.news && data.news.length > 0) {
+                        data.news.forEach(n => {
+                            newsHtml += `<div class="list-item">${n.title}</div>`;
+                        });
+                    } else {
+                        newsHtml = '<div style="color:#64748b; padding:10px;">Loading news...</div>';
+                    }
+                    document.getElementById('news-data').innerHTML = newsHtml;
+
+                    // Column 3: Top 5 Viral Trends (India)
+                    let trendsHtml = '';
+                    if (data.trends && data.trends.length > 0) {
+                        data.trends.forEach(t => {
+                            trendsHtml += `<div class="list-item trend-item">🔥 ${t.title}</div>`;
+                        });
+                    } else {
+                        trendsHtml = '<div style="color:#64748b; padding:10px;">Loading viral trends...</div>';
+                    }
+                    document.getElementById('trends-data').innerHTML = trendsHtml;
+
+                    // Column 3: Top 5 Breaking News (India)
+                    let breakingHtml = '';
+                    if (data.breaking_india && data.breaking_india.length > 0) {
+                        data.breaking_india.forEach(b => {
+                            breakingHtml += `<div class="list-item breaking-item">⚡ ${b.title}</div>`;
+                        });
+                    } else {
+                        breakingHtml = '<div style="color:#64748b; padding:10px;">Loading breaking news...</div>';
+                    }
+                    document.getElementById('breaking-india-data').innerHTML = breakingHtml;
+
+                    // Bottom Ticker Bar with elegant spacing
+                    let tickerHtml = '';
+                    if (data.ticker && data.ticker.length > 0) {
+                        data.ticker.forEach((t, idx) => {
+                            const isPos = t.change >= 0;
+                            const badgeClass = isPos ? 'positive' : 'negative';
+                            const sign = isPos ? '+' : '';
+                            tickerHtml += `
+                                <div class="ticker-item">
+                                    <span class="ticker-name">${t.name}</span>
+                                    <span class="ticker-val">${t.price}</span>
+                                    <span class="ticker-badge ${badgeClass}">${sign}${t.change}%</span>
+                                </div>
+                            `;
+                            if (idx < data.ticker.length - 1) {
+                                tickerHtml += `<div class="ticker-sep"></div>`;
+                            }
+                        });
+                    }
+                    document.getElementById('ticker').innerHTML = tickerHtml;
+                })
+                .catch(err => {
+                    console.error("Dashboard update failed:", err);
+                });
+        }
+
+        setInterval(updateFlashcard, 30000);  // Update flashcard every 30 seconds
+        setInterval(updateDashboard, 60000);  // Refresh dashboard data every 60 seconds
+        updateFlashcard();
+        updateDashboard();
+    </script>
+</body>
+</html>
