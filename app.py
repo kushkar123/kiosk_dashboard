@@ -43,6 +43,14 @@ _cache = {
     "ticker": {"data": None, "ts": 0},
 }
 
+# Persistent last known weather for Bareilly so it NEVER displays '--'
+_last_known_weather = {
+    "city": "Bareilly",
+    "temp": "27.6°C",
+    "condition": "Partly Cloudy",
+    "aqi": 166
+}
+
 # Persistent last known rates for commodities so they NEVER disappear
 _last_known_rates = {
     "Gold": {"price": "₹136,655", "change": 0.32},
@@ -57,32 +65,45 @@ def get_bareilly_weather():
     now_ts = time.time()
     if _cache["weather"]["data"] and (now_ts - _cache["weather"]["ts"] < 300):
         return _cache["weather"]["data"]
+
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
+    }
+
+    # 1. Fetch Temperature & Weather Condition
     try:
         url = "https://api.open-meteo.com/v1/forecast?latitude=28.367&longitude=79.4304&current=temperature_2m,weather_code&timezone=auto"
-        aq_url = "https://air-quality-api.open-meteo.com/v1/air-quality?latitude=28.367&longitude=79.4304&current=us_aqi&timezone=auto"
-        res = requests.get(url, verify=False, timeout=4).json()
-        aq_res = requests.get(aq_url, verify=False, timeout=4).json()
-        temp = res['current']['temperature_2m']
-        code = res['current']['weather_code']
-        aqi = aq_res['current']['us_aqi']
-        code_map = {
-            0: 'Clear', 1: 'Mainly Clear', 2: 'Partly Cloudy', 3: 'Overcast',
-            45: 'Foggy', 48: 'Foggy', 51: 'Drizzle', 61: 'Light Rain', 63: 'Rain',
-            71: 'Snow', 80: 'Rain Showers', 95: 'Thunderstorm'
-        }
-        condition = code_map.get(code, 'Clear')
-        data = {
-            "city": "Bareilly",
-            "temp": f"{temp}°C",
-            "condition": condition,
-            "aqi": aqi
-        }
-        _cache["weather"] = {"data": data, "ts": now_ts}
-        return data
+        res = requests.get(url, headers=headers, verify=False, timeout=8).json()
+        cur = res.get('current', {})
+        if 'temperature_2m' in cur:
+            _last_known_weather["temp"] = f"{cur['temperature_2m']}°C"
+            code_map = {
+                0: 'Clear', 1: 'Mainly Clear', 2: 'Partly Cloudy', 3: 'Overcast',
+                45: 'Foggy', 48: 'Foggy', 51: 'Drizzle', 61: 'Light Rain', 63: 'Rain',
+                71: 'Snow', 80: 'Rain Showers', 95: 'Thunderstorm'
+            }
+            _last_known_weather["condition"] = code_map.get(cur.get('weather_code'), 'Clear')
     except Exception:
-        if _cache["weather"]["data"]:
-            return _cache["weather"]["data"]
-        return {"city": "Bareilly", "temp": "--°C", "condition": "--", "aqi": "--"}
+        pass
+
+    # 2. Fetch AQI independently
+    try:
+        aq_url = "https://air-quality-api.open-meteo.com/v1/air-quality?latitude=28.367&longitude=79.4304&current=us_aqi&timezone=auto"
+        aq_res = requests.get(aq_url, headers=headers, verify=False, timeout=8).json()
+        cur_aq = aq_res.get('current', {})
+        if 'us_aqi' in cur_aq:
+            _last_known_weather["aqi"] = cur_aq['us_aqi']
+    except Exception:
+        pass
+
+    data = {
+        "city": "Bareilly",
+        "temp": _last_known_weather["temp"],
+        "condition": _last_known_weather["condition"],
+        "aqi": _last_known_weather["aqi"]
+    }
+    _cache["weather"] = {"data": data, "ts": now_ts}
+    return data
 
 def get_rss(url, limit=5, fallback_url=None):
     try:
