@@ -27,6 +27,14 @@ from flask import Flask, render_template, jsonify
 app = Flask(__name__)
 IST = pytz.timezone('Asia/Kolkata')
 
+@app.after_request
+def add_header(response):
+    """Disable browser caching so changes reflect immediately."""
+    response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate, max-age=0'
+    response.headers['Pragma'] = 'no-cache'
+    response.headers['Expires'] = '0'
+    return response
+
 # In-memory caches to guarantee sub-second dashboard refresh speeds
 _cache = {
     "weather": {"data": None, "ts": 0},
