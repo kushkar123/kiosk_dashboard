@@ -2,85 +2,88 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Command Center Kiosk</title>
     <style>
         * {
             box-sizing: border-box;
         }
         body {
-            background-color: #0d0e12;
+            background-color: #0b0d14;
             color: #ffffff;
             font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             margin: 0;
-            padding: 1.5vw 2vw;
+            padding: 12px 18px;
             height: 100vh;
             display: flex;
             flex-direction: column;
             overflow: hidden;
         }
+
+        /* Header Layout */
         .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 2px solid #252836;
-            padding-bottom: 12px;
-            margin-bottom: 16px;
+            border-bottom: 2px solid #1f273d;
+            padding-bottom: 10px;
+            margin-bottom: 12px;
         }
         .time-box h1 {
             margin: 0;
-            font-size: 3.2vw;
+            font-size: 2.4rem;
             font-weight: 700;
-            letter-spacing: -1px;
+            letter-spacing: -0.5px;
             line-height: 1;
         }
         .time-box h3 {
-            margin: 5px 0 0 0;
+            margin: 4px 0 0 0;
             color: #8f95b2;
-            font-size: 1.1vw;
+            font-size: 0.95rem;
             font-weight: 500;
         }
 
         /* Bareilly Weather Badge */
         .weather-box {
-            background: linear-gradient(135deg, #1b2030, #141824);
-            border: 1px solid #2e3650;
+            background: linear-gradient(135deg, #182033, #121624);
+            border: 1px solid #283552;
             border-radius: 10px;
-            padding: 10px 18px;
+            padding: 8px 18px;
             text-align: center;
-            min-width: 20%;
+            min-width: 22%;
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
         }
         .weather-city {
-            font-size: 1.1vw;
+            font-size: 0.9rem;
             font-weight: 700;
             color: #79a8ff;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 6px;
+            gap: 5px;
         }
         .weather-temp-cond {
-            font-size: 1.8vw;
+            font-size: 1.45rem;
             font-weight: 700;
-            margin: 3px 0;
+            margin: 2px 0;
             color: #ffffff;
         }
         .weather-cond {
-            font-size: 1vw;
+            font-size: 0.9rem;
             color: #b0b8d6;
             font-weight: 400;
             margin-left: 6px;
         }
         .weather-aqi {
-            font-size: 0.95vw;
+            font-size: 0.85rem;
             color: #9aa2c2;
         }
         .aqi-pill {
             display: inline-block;
-            padding: 2px 8px;
-            border-radius: 12px;
+            padding: 2px 7px;
+            border-radius: 10px;
             font-weight: bold;
-            font-size: 0.9vw;
+            font-size: 0.82rem;
             margin-left: 4px;
         }
         .aqi-good { background: rgba(0, 230, 118, 0.2); color: #00e676; border: 1px solid #00e676; }
@@ -88,67 +91,69 @@
         .aqi-unhealthy-sens { background: rgba(255, 145, 0, 0.2); color: #ff9100; border: 1px solid #ff9100; }
         .aqi-unhealthy { background: rgba(255, 82, 82, 0.2); color: #ff5252; border: 1px solid #ff5252; }
 
+        /* German Vocabulary Flashcard */
         .flashcard {
-            border: 1px solid #2e3650;
-            padding: 10px 18px;
+            border: 1px solid #283552;
+            padding: 8px 18px;
             border-radius: 10px;
             text-align: right;
-            width: 35%;
-            background: linear-gradient(135deg, #181d2a, #131722);
+            width: 32%;
+            background: linear-gradient(135deg, #182033, #121624);
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
         }
         .flashcard h2 {
             margin: 0;
-            font-size: 1.8vw;
+            font-size: 1.4rem;
             color: #ffca28;
             font-weight: 700;
         }
         .flashcard p {
             margin: 3px 0 0 0;
-            font-size: 1vw;
+            font-size: 0.88rem;
             color: #d1d5db;
             font-style: italic;
         }
 
+        /* 3 Main Columns Layout */
         .grid {
             display: flex;
             flex: 1;
-            gap: 1.5vw;
+            gap: 14px;
             min-height: 0;
         }
         .col {
             flex: 1;
             display: flex;
             flex-direction: column;
-            background: #131722;
-            border: 1px solid #22283a;
+            background: #111420;
+            border: 1px solid #1e263a;
             border-radius: 10px;
-            padding: 14px 16px;
+            padding: 12px 14px;
             overflow: hidden;
+            min-height: 0;
         }
         h2.section-title {
-            font-size: 1.35vw;
+            font-size: 1.15rem;
             margin: 0 0 10px 0;
-            border-bottom: 2px solid #252c40;
-            padding-bottom: 8px;
+            border-bottom: 2px solid #20293f;
+            padding-bottom: 6px;
             color: #e2e8f0;
             font-weight: 700;
-            letter-spacing: 0.3px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
         .section-badge {
-            font-size: 0.75vw;
+            font-size: 0.72rem;
             font-weight: 600;
-            padding: 3px 8px;
+            padding: 2px 7px;
             border-radius: 4px;
-            background: #1e2638;
+            background: #1a2236;
             color: #60a5fa;
             text-transform: uppercase;
         }
 
-        /* Stock Movers 2-Column Layout */
+        /* Stock Movers (Gainers & Losers) Side-by-Side */
         .movers-container {
             display: flex;
             gap: 10px;
@@ -157,19 +162,20 @@
         }
         .movers-col {
             flex: 1;
-            background: #0e111a;
+            background: #090c13;
             border-radius: 8px;
-            padding: 10px;
-            border: 1px solid #1c2233;
+            padding: 8px 10px;
+            border: 1px solid #182033;
             display: flex;
             flex-direction: column;
+            min-width: 0;
         }
         .movers-hdr {
-            font-size: 0.95vw;
+            font-size: 0.88rem;
             font-weight: 700;
             padding-bottom: 6px;
             margin-bottom: 8px;
-            border-bottom: 1px solid #20273c;
+            border-bottom: 1px solid #1d273f;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -177,54 +183,56 @@
         .movers-hdr.gainers { color: #10b981; }
         .movers-hdr.losers { color: #f43f5e; }
 
+        /* Clean Stock Row without Price: Just Ticker & Percentage Badge */
         .stock-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 7px 8px;
+            padding: 8px 10px;
             border-radius: 6px;
             margin-bottom: 6px;
-            background: #151926;
-            font-size: 0.95vw;
+            background: #141826;
+            min-width: 0;
         }
         .stock-sym {
             font-weight: 700;
-            color: #f1f5f9;
-        }
-        .stock-price {
-            color: #94a3b8;
-            font-size: 0.9vw;
-            margin-left: auto;
-            margin-right: 10px;
+            color: #f8fafc;
+            font-size: 0.95rem;
+            letter-spacing: 0.3px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
         .stock-chg {
             font-weight: 700;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-size: 0.85vw;
-            min-width: 60px;
-            text-align: right;
+            padding: 3px 8px;
+            border-radius: 5px;
+            font-size: 0.88rem;
+            white-space: nowrap;
+            flex-shrink: 0;
+            letter-spacing: 0.2px;
         }
-        .chg-pos { background: rgba(16, 185, 129, 0.15); color: #10b981; }
-        .chg-neg { background: rgba(244, 63, 94, 0.15); color: #f43f5e; }
+        .chg-pos { background: rgba(16, 185, 129, 0.16); color: #10b981; }
+        .chg-neg { background: rgba(244, 63, 94, 0.16); color: #f43f5e; }
 
-        /* News & Trends Items */
+        /* News & Trends Feed Scroll */
         .feed-scroll {
             overflow-y: auto;
             flex: 1;
             padding-right: 4px;
+            min-height: 0;
         }
         .feed-scroll::-webkit-scrollbar { width: 4px; }
-        .feed-scroll::-webkit-scrollbar-thumb { background: #262e45; border-radius: 4px; }
+        .feed-scroll::-webkit-scrollbar-thumb { background: #263352; border-radius: 4px; }
 
         .list-item {
-            font-size: 0.98vw;
-            margin-bottom: 10px;
-            line-height: 1.4;
+            font-size: 0.88rem;
+            margin-bottom: 8px;
+            line-height: 1.35;
             color: #cbd5e1;
-            padding: 8px 10px;
+            padding: 7px 10px;
             border-radius: 6px;
-            background: #0f131d;
+            background: #0d101a;
             border-left: 3px solid #3b82f6;
         }
         .list-item.trend-item {
@@ -235,68 +243,99 @@
         }
 
         .sub-header {
-            font-size: 1vw;
+            font-size: 0.92rem;
             font-weight: 700;
             color: #f59e0b;
-            margin: 6px 0 8px 0;
+            margin: 4px 0 6px 0;
             display: flex;
             align-items: center;
             gap: 6px;
         }
         .sub-header.breaking {
             color: #ef4444;
-            margin-top: 14px;
+            margin-top: 10px;
         }
 
         /* Bottom Ticker Bar */
         .ticker-bar {
             background: linear-gradient(180deg, #131724 0%, #0d101a 100%);
-            padding: 13px 2vw;
-            margin-top: 14px;
+            padding: 10px 18px;
+            margin-top: 12px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-radius: 12px;
+            border-radius: 10px;
             border: 1px solid #20273c;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            flex-shrink: 0;
         }
         .ticker-item {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 7px;
         }
         .ticker-name {
-            font-size: 0.9vw;
+            font-size: 0.84rem;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 0.6px;
+            letter-spacing: 0.5px;
             color: #94a3b8;
         }
         .ticker-val {
-            font-size: 1.12vw;
+            font-size: 1.05rem;
             font-weight: 700;
             color: #ffffff;
             letter-spacing: -0.2px;
         }
         .ticker-badge {
-            font-size: 0.82vw;
+            font-size: 0.82rem;
             font-weight: 700;
-            padding: 2px 7px;
+            padding: 2px 6px;
             border-radius: 4px;
-            letter-spacing: 0.2px;
         }
         .ticker-badge.positive {
-            background: rgba(16, 185, 129, 0.15);
+            background: rgba(16, 185, 129, 0.16);
             color: #10b981;
         }
         .ticker-badge.negative {
-            background: rgba(244, 63, 94, 0.15);
+            background: rgba(244, 63, 94, 0.16);
             color: #f43f5e;
         }
         .ticker-sep {
             width: 1px;
-            height: 20px;
+            height: 18px;
             background: #252e45;
+        }
+
+        /* Responsive Adaptations for 1366x768 & Laptops */
+        @media (max-width: 1400px), (max-height: 800px) {
+            body {
+                padding: 8px 14px;
+            }
+            .header {
+                padding-bottom: 6px;
+                margin-bottom: 8px;
+            }
+            .time-box h1 { font-size: 2rem; }
+            .time-box h3 { font-size: 0.8rem; }
+            .weather-box { padding: 5px 12px; }
+            .weather-temp-cond { font-size: 1.25rem; }
+            .flashcard { padding: 5px 12px; }
+            .flashcard h2 { font-size: 1.2rem; }
+            .flashcard p { font-size: 0.8rem; }
+            .grid { gap: 10px; }
+            .col { padding: 9px 10px; }
+            h2.section-title { font-size: 0.98rem; margin-bottom: 6px; padding-bottom: 4px; }
+            .movers-hdr { font-size: 0.82rem; margin-bottom: 5px; }
+            .stock-row { padding: 6px 8px; margin-bottom: 4px; }
+            .stock-sym { font-size: 0.88rem; }
+            .stock-chg { font-size: 0.8rem; padding: 2px 6px; }
+            .list-item { font-size: 0.8rem; padding: 5px 8px; margin-bottom: 6px; }
+            .sub-header { font-size: 0.84rem; margin: 3px 0 5px 0; }
+            .ticker-bar { padding: 8px 14px; margin-top: 8px; }
+            .ticker-name { font-size: 0.78rem; }
+            .ticker-val { font-size: 0.92rem; }
+            .ticker-badge { font-size: 0.76rem; }
         }
     </style>
 </head>
@@ -319,6 +358,7 @@
             </div>
         </div>
 
+        <!-- German Flashcard Widget -->
         <div class="flashcard">
             <h2 id="ger-word">Laden...</h2>
             <p id="ger-eng">Loading...</p>
@@ -327,7 +367,7 @@
     </div>
 
     <div class="grid">
-        <!-- Column 1: Primary Focus (Dynamic Market Movers) -->
+        <!-- Column 1: Primary Focus (Movers Side-by-Side: Ticker & Percentage only) -->
         <div class="col">
             <h2 class="section-title">
                 Primary Focus
@@ -370,7 +410,7 @@
         </div>
     </div>
 
-    <!-- Bottom Ticker Bar in Indian Rupee (INR) -->
+    <!-- Bottom Ticker Bar -->
     <div class="ticker-bar" id="ticker">
         <div class="ticker-item"><span class="ticker-name">Loading ticker...</span></div>
     </div>
@@ -396,10 +436,11 @@
             return 'aqi-unhealthy';
         }
 
-        function renderStockRows(stocks, containerId, currency) {
+        // Render stock rows with ONLY symbol and percentage change (no prices)
+        function renderStockRows(stocks, containerId) {
             const container = document.getElementById(containerId);
             if (!stocks || stocks.length === 0) {
-                container.innerHTML = '<div style="color:#64748b; padding:10px; font-size:0.9vw;">No data available</div>';
+                container.innerHTML = '<div style="color:#64748b; padding:10px; font-size:0.85rem;">No data available</div>';
                 return;
             }
             let html = '';
@@ -407,13 +448,9 @@
                 const isPos = s.change >= 0;
                 const sign = isPos ? '+' : '';
                 const chgClass = isPos ? 'chg-pos' : 'chg-neg';
-                const formattedPrice = (currency === '₹')
-                    ? `₹${s.price.toLocaleString('en-IN')}`
-                    : `$${s.price.toFixed(2)}`;
                 html += `
                     <div class="stock-row">
                         <span class="stock-sym">${s.name}</span>
-                        <span class="stock-price">${formattedPrice}</span>
                         <span class="stock-chg ${chgClass}">${sign}${s.change.toFixed(2)}%</span>
                     </div>
                 `;
@@ -442,14 +479,14 @@
                         aqiElem.className = "aqi-pill " + getAqiClass(data.weather.aqi);
                     }
 
-                    // Column 1: Primary Focus (Dynamic Market Movers: Nifty 50 or Nasdaq 100)
+                    // Column 1: Primary Focus (Top 6 Gainers & Losers - Symbol & Percentage ONLY)
                     if (data.primary_focus) {
                         document.getElementById('primary-market-badge').innerText = data.primary_focus.market;
-                        renderStockRows(data.primary_focus.gainers, 'nasdaq-gainers', data.primary_focus.currency);
-                        renderStockRows(data.primary_focus.losers, 'nasdaq-losers', data.primary_focus.currency);
+                        renderStockRows(data.primary_focus.gainers, 'nasdaq-gainers');
+                        renderStockRows(data.primary_focus.losers, 'nasdaq-losers');
                     }
 
-                    // Column 2: News & Buzz (Dynamic based on Market Hours)
+                    // Column 2: News & Buzz
                     let newsHtml = '';
                     if (data.news && data.news.length > 0) {
                         data.news.forEach(n => {
@@ -482,7 +519,7 @@
                     }
                     document.getElementById('breaking-india-data').innerHTML = breakingHtml;
 
-                    // Bottom Ticker Bar with elegant spacing
+                    // Bottom Ticker Bar: Nifty 50, Sensex, Gold, Silver, Brent, USD/INR
                     let tickerHtml = '';
                     if (data.ticker && data.ticker.length > 0) {
                         data.ticker.forEach((t, idx) => {

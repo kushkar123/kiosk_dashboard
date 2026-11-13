@@ -35,6 +35,14 @@ _cache = {
     "ticker": {"data": None, "ts": 0},
 }
 
+# Persistent last known rates for commodities so they NEVER disappear
+_last_known_rates = {
+    "Gold": {"price": "₹136,655", "change": 0.32},
+    "Silver": {"price": "₹178,199", "change": -0.29},
+    "Brent": {"price": "$96.17", "change": 0.45},
+    "USD/INR": {"price": "₹94.24", "change": 0.58}
+}
+
 CACHE_TTL_SECS = 45  # Refresh market data every 45 seconds
 
 def get_bareilly_weather():
@@ -132,7 +140,7 @@ def get_nifty_movers():
         'ITC.NS', 'SBIN.NS', 'LT.NS', 'HINDUNILVR.NS', 'BAJFINANCE.NS', 'HCLTECH.NS',
         'MARUTI.NS', 'SUNPHARMA.NS', 'KOTAKBANK.NS', 'TITAN.NS', 'ONGC.NS',
         'ADANIENT.NS', 'NTPC.NS', 'POWERGRID.NS', 'TATASTEEL.NS', 'AXISBANK.NS', 'M&M.NS',
-        'COALINDIA.NS', 'BAJAJFINSV.NS', 'ASIANPAINT.NS', 'WIPRO.NS', 'ULTRACEMCO.NS', 'JSWSTEEL.NS'
+        'COALINDIA.NS', 'ASIANPAINT.NS', 'WIPRO.NS', 'ULTRACEMCO.NS', 'JSWSTEEL.NS'
     ]
     try:
         df = yf.download(nifty_symbols, period='2d', interval='1d', progress=False)
@@ -162,42 +170,70 @@ def get_nifty_movers():
 
 def get_tv_commodities():
     """Fetches real-time MCX:GOLD1!, MCX:SILVER1!, and FX:UKOIL prices via TradingView scanner."""
+    url = "https://scanner.tradingview.com/global/scan"
+    payload = {
+        "symbols": {"tickers": ["MCX:GOLD1!", "MCX:SILVER1!", "FX:UKOIL"]},
+        "columns": ["name", "close", "change"]
+    }
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+    }
+
+    # Attempt 1: Try curl_cffi with chrome impersonation (handles Cloudflare on Render)
     try:
-        url = "https://scanner.tradingview.com/global/scan"
-        payload = {
-            "symbols": {"tickers": ["MCX:GOLD1!", "MCX:SILVER1!", "FX:UKOIL"]},
-            "columns": ["name", "close", "change"]
-        }
-        headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
-        r = requests.post(url, json=payload, headers=headers, verify=False, timeout=4)
-        result = {}
-        for item in r.json().get("data", []):
-            sym = item.get("s")
-            cols = item.get("d", [])
-            if len(cols) >= 3:
-                result[sym] = {"name": cols[0], "price": cols[1], "change": round(cols[2], 2)}
-        return result
+        import curl_cffi.requests as c_req
+        r = c_req.post(url, json=payload, headers=headers, impersonate="chrome", verify=False, timeout=4)
+        if r.status_code == 200:
+            result = {}
+            for item in r.json().get("data", []):
+                sym = item.get("s")
+                cols = item.get("d", [])
+                if len(cols) >= 3:
+                    result[sym] = {"name": cols[0], "price": cols[1], "change": round(cols[2], 2)}
+            if result:
+                return result
     except Exception:
-        return {}
+        pass
+
+    # Attempt 2: Standard requests
+    try:
+        r = requests.post(url, json=payload, headers=headers, timeout=4)
+        if r.status_code == 200:
+            result = {}
+            for item in r.json().get("data", []):
+                sym = item.get("s")
+                cols = item.get("d", [])
+                if len(cols) >= 3:
+                    result[sym] = {"name": cols[0], "price": cols[1], "change": round(cols[2], 2)}
+            if result:
+                return result
+    except Exception:
+        pass
+
+    return {}
 
 def get_inr_ticker_data():
     now_ts = time.time()
     if _cache["ticker"]["data"] and (now_ts - _cache["ticker"]["ts"] < CACHE_TTL_SECS):
         return _cache["ticker"]["data"]
 
+    items = []
+    usd_inr = 94.24
+    usd_inr_change = 0.58
+
+    # 1. Fetch Nifty, Sensex, and USD/INR from Yahoo Finance
     try:
         symbols = ['^NSEI', '^BSESN', 'USDINR=X']
         df = yf.download(symbols, period='2d', interval='1d', progress=False)
         closes = df['Close']
         
-        usd_inr = float(closes['USDINR=X'].dropna().iloc[-1]) if 'USDINR=X' in closes and len(closes['USDINR=X'].dropna()) > 0 else 85.0
-        usd_inr_prev = float(closes['USDINR=X'].dropna().iloc[-2]) if 'USDINR=X' in closes and len(closes['USDINR=X'].dropna()) > 1 else usd_inr
-        usd_inr_change = ((usd_inr - usd_inr_prev) / usd_inr_prev) * 100 if usd_inr_prev else 0
-        
-        # Real-time MCX:GOLD1!, MCX:SILVER1!, and FX:UKOIL
-        tv = get_tv_commodities()
-
-        items = []
+        if 'USDINR=X' in closes and len(closes['USDINR=X'].dropna()) > 0:
+            usd_inr = float(closes['USDINR=X'].dropna().iloc[-1])
+            usd_inr_prev = float(closes['USDINR=X'].dropna().iloc[-2]) if len(closes['USDINR=X'].dropna()) > 1 else usd_inr
+            usd_inr_change = ((usd_inr - usd_inr_prev) / usd_inr_prev) * 100 if usd_inr_prev else 0
+            _last_known_rates["USD/INR"] = {"price": f"₹{usd_inr:.2f}", "change": round(usd_inr_change, 2)}
 
         # Nifty 50
         if '^NSEI' in closes and len(closes['^NSEI'].dropna()) >= 2:
@@ -210,31 +246,35 @@ def get_inr_ticker_data():
             s = closes['^BSESN'].dropna()
             curr, prev = float(s.iloc[-1]), float(s.iloc[-2])
             items.append({"name": "Sensex", "price": f"₹{curr:,.0f}", "change": round(((curr - prev)/prev)*100, 2)})
-
-        # Gold (MCX:GOLD1!)
-        if 'MCX:GOLD1!' in tv:
-            g = tv['MCX:GOLD1!']
-            items.append({"name": "Gold", "price": f"₹{g['price']:,.0f}", "change": g['change']})
-
-        # Silver (MCX:SILVER1!)
-        if 'MCX:SILVER1!' in tv:
-            s = tv['MCX:SILVER1!']
-            items.append({"name": "Silver", "price": f"₹{s['price']:,.0f}", "change": s['change']})
-
-        # Brent (UKOIL in Dollar terms)
-        if 'FX:UKOIL' in tv:
-            b = tv['FX:UKOIL']
-            items.append({"name": "Brent", "price": f"${b['price']:.2f}", "change": b['change']})
-
-        # USD/INR
-        items.append({"name": "USD/INR", "price": f"₹{usd_inr:.2f}", "change": round(usd_inr_change, 2)})
-
-        _cache["ticker"] = {"data": items, "ts": now_ts}
-        return items
     except Exception:
-        if _cache["ticker"]["data"]:
-            return _cache["ticker"]["data"]
-        return []
+        pass
+
+    # 2. Real-time MCX:GOLD1!, MCX:SILVER1!, and FX:UKOIL from TradingView
+    tv = get_tv_commodities()
+
+    # Gold (MCX:GOLD1!) - with persistent last-known guarantee
+    if 'MCX:GOLD1!' in tv:
+        g = tv['MCX:GOLD1!']
+        _last_known_rates["Gold"] = {"price": f"₹{g['price']:,.0f}", "change": g['change']}
+    items.append({"name": "Gold", "price": _last_known_rates["Gold"]["price"], "change": _last_known_rates["Gold"]["change"]})
+
+    # Silver (MCX:SILVER1!) - with persistent last-known guarantee
+    if 'MCX:SILVER1!' in tv:
+        s = tv['MCX:SILVER1!']
+        _last_known_rates["Silver"] = {"price": f"₹{s['price']:,.0f}", "change": s['change']}
+    items.append({"name": "Silver", "price": _last_known_rates["Silver"]["price"], "change": _last_known_rates["Silver"]["change"]})
+
+    # Brent (UKOIL in Dollar terms) - with persistent last-known guarantee
+    if 'FX:UKOIL' in tv:
+        b = tv['FX:UKOIL']
+        _last_known_rates["Brent"] = {"price": f"${b['price']:.2f}", "change": b['change']}
+    items.append({"name": "Brent", "price": _last_known_rates["Brent"]["price"], "change": _last_known_rates["Brent"]["change"]})
+
+    # USD/INR
+    items.append({"name": "USD/INR", "price": _last_known_rates["USD/INR"]["price"], "change": _last_known_rates["USD/INR"]["change"]})
+
+    _cache["ticker"] = {"data": items, "ts": now_ts}
+    return items
 
 @app.route('/')
 def index():
