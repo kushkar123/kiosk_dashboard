@@ -25,6 +25,7 @@ import yfinance as yf
 from flask import Flask, render_template, jsonify
 
 app = Flask(__name__)
+app.config['TEMPLATES_AUTO_RELOAD'] = True
 IST = pytz.timezone('Asia/Kolkata')
 
 @app.after_request
@@ -324,6 +325,41 @@ def flashcard():
         return jsonify({"german": word[0].strip(), "english": word[1].strip(), "sentence": word[2].strip()})
     except Exception:
         return jsonify({"german": "Keine Daten", "english": "No data", "sentence": "Check german_words.txt format."})
+
+@app.route('/api/german-screensaver')
+def german_screensaver():
+    try:
+        base_dir = os.path.dirname(os.path.abspath(__file__))
+        file_path = os.path.join(base_dir, 'german_words.txt')
+        if not os.path.exists(file_path):
+            file_path = os.path.join(base_dir, 'german-words.txt')
+        with open(file_path, 'r', encoding='utf-8') as f:
+            lines = [line.strip() for line in f.readlines() if '|' in line]
+        if not lines:
+            raise ValueError
+        
+        parsed = []
+        for line in lines:
+            parts = [p.strip() for p in line.split('|')]
+            if len(parts) >= 3:
+                parsed.append({"german": parts[0], "english": parts[1], "sentence": parts[2]})
+            elif len(parts) == 2:
+                parsed.append({"german": parts[0], "english": parts[1], "sentence": ""})
+
+        # Sample up to 3 distinct words (or with replacement if fewer)
+        count = min(3, len(parsed))
+        selected = random.sample(parsed, count)
+        while len(selected) < 3 and len(parsed) > 0:
+            selected.append(random.choice(parsed))
+            
+        return jsonify(selected)
+    except Exception:
+        fallback = [
+            {"german": "der Bahnhof", "english": "the train station", "sentence": "Ich gehe zum Bahnhof."},
+            {"german": "die Zeitung", "english": "the newspaper", "sentence": "Sie liest die Zeitung."},
+            {"german": "erfolgreich", "english": "successful", "sentence": "Das Projekt war sehr erfolgreich."}
+        ]
+        return jsonify(fallback)
 
 @app.route('/api/data')
 def dashboard_data():

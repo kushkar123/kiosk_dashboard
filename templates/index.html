@@ -13,7 +13,7 @@
             color: #ffffff;
             font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             margin: 0;
-            padding: 12px 18px;
+            padding: 10px 18px;
             height: 100vh;
             display: flex;
             flex-direction: column;
@@ -26,20 +26,72 @@
             justify-content: space-between;
             align-items: center;
             border-bottom: 2px solid #1f273d;
-            padding-bottom: 10px;
-            margin-bottom: 12px;
+            padding-bottom: 8px;
+            margin-bottom: 8px;
+            flex-shrink: 0;
+        }
+        .time-box {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .time-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
         .time-box h1 {
             margin: 0;
-            font-size: 2.4rem;
+            font-size: 2.2rem;
             font-weight: 700;
             letter-spacing: -0.5px;
             line-height: 1;
         }
+        .playback-btn {
+            background: transparent;
+            border: 1px solid rgba(148, 163, 184, 0.35);
+            color: #94a3b8;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+            outline: none;
+            user-select: none;
+            backdrop-filter: blur(4px);
+        }
+        .playback-btn:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.55);
+            color: #ffffff;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.12);
+        }
+        .playback-btn:active {
+            transform: scale(0.96);
+        }
+        .playback-btn.paused {
+            color: #34d399;
+            border-color: rgba(52, 211, 153, 0.45);
+        }
+        .playback-btn.paused:hover {
+            background: rgba(52, 211, 153, 0.12);
+            border-color: #34d399;
+            color: #6ee7b7;
+        }
+        .playback-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
         .time-box h3 {
-            margin: 4px 0 0 0;
+            margin: 3px 0 0 0;
             color: #8f95b2;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             font-weight: 500;
         }
 
@@ -48,13 +100,13 @@
             background: linear-gradient(135deg, #182033, #121624);
             border: 1px solid #283552;
             border-radius: 10px;
-            padding: 8px 18px;
+            padding: 6px 16px;
             text-align: center;
             min-width: 22%;
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
         }
         .weather-city {
-            font-size: 0.9rem;
+            font-size: 0.88rem;
             font-weight: 700;
             color: #79a8ff;
             display: flex;
@@ -63,27 +115,27 @@
             gap: 5px;
         }
         .weather-temp-cond {
-            font-size: 1.45rem;
+            font-size: 1.35rem;
             font-weight: 700;
-            margin: 2px 0;
+            margin: 1px 0;
             color: #ffffff;
         }
         .weather-cond {
-            font-size: 0.9rem;
+            font-size: 0.88rem;
             color: #b0b8d6;
             font-weight: 400;
             margin-left: 6px;
         }
         .weather-aqi {
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             color: #9aa2c2;
         }
         .aqi-pill {
             display: inline-block;
-            padding: 2px 7px;
+            padding: 1px 7px;
             border-radius: 10px;
             font-weight: bold;
-            font-size: 0.82rem;
+            font-size: 0.8rem;
             margin-left: 4px;
         }
         .aqi-good { background: rgba(0, 230, 118, 0.2); color: #00e676; border: 1px solid #00e676; }
@@ -94,7 +146,7 @@
         /* German Vocabulary Flashcard */
         .flashcard {
             border: 1px solid #283552;
-            padding: 8px 18px;
+            padding: 6px 16px;
             border-radius: 10px;
             text-align: right;
             width: 32%;
@@ -103,194 +155,426 @@
         }
         .flashcard h2 {
             margin: 0;
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             color: #ffca28;
             font-weight: 700;
         }
         .flashcard p {
-            margin: 3px 0 0 0;
-            font-size: 0.88rem;
+            margin: 2px 0 0 0;
+            font-size: 0.84rem;
             color: #d1d5db;
             font-style: italic;
         }
 
-        /* 3 Main Columns Layout */
-        .grid {
+        /* 2-Minute Rotating Carousel Navigation */
+        .carousel-nav {
             display: flex;
-            flex: 1;
-            gap: 14px;
-            min-height: 0;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 4px;
+            flex-shrink: 0;
         }
-        .col {
+        .carousel-tabs {
+            display: flex;
+            gap: 8px;
+        }
+        .carousel-tab {
+            background: #111522;
+            border: 1px solid #1f273d;
+            border-radius: 6px;
+            padding: 5px 14px;
+            color: #94a3b8;
+            font-size: 0.84rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.25s ease;
+        }
+        .carousel-tab:hover {
+            background: #1a2236;
+            color: #f1f5f9;
+        }
+        .carousel-tab.active {
+            background: #1e2942;
+            border-color: #3b82f6;
+            color: #60a5fa;
+            box-shadow: 0 0 12px rgba(59, 130, 246, 0.25);
+        }
+        .tab-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #232d47;
+            font-size: 0.72rem;
+            font-weight: 800;
+        }
+        .carousel-tab.active .tab-num {
+            background: #3b82f6;
+            color: #ffffff;
+        }
+        .carousel-timer-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.8rem;
+            color: #64748b;
+            font-weight: 600;
+        }
+        .countdown-badge {
+            background: #141a29;
+            border: 1px solid #232c45;
+            padding: 2px 8px;
+            border-radius: 4px;
+            color: #cbd5e1;
+            font-family: monospace;
+            font-size: 0.85rem;
+        }
+
+        /* 2-Minute Animated Progress Bar */
+        .progress-container {
+            width: 100%;
+            height: 3px;
+            background: #151a28;
+            border-radius: 2px;
+            margin-bottom: 8px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #3b82f6, #60a5fa);
+            border-radius: 2px;
+            transition: width 1s linear;
+        }
+
+        /* Carousel Viewport (100% Full-Width Container) */
+        .carousel-viewport {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .carousel-slide {
+            display: none;
+            flex: 1;
+            width: 100%;
+            height: 100%;
+            min-height: 0;
+            flex-direction: column;
+            animation: fadeIn 0.4s ease forwards;
+        }
+        .carousel-slide.active {
+            display: flex;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.995); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* Full-Section Card Wrapper */
+        .full-section-card {
             flex: 1;
             display: flex;
             flex-direction: column;
             background: #111420;
             border: 1px solid #1e263a;
-            border-radius: 10px;
-            padding: 12px 14px;
-            overflow: hidden;
+            border-radius: 12px;
+            padding: 14px 18px;
             min-height: 0;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         }
-        h2.section-title {
-            font-size: 1.15rem;
-            margin: 0 0 10px 0;
-            border-bottom: 2px solid #20293f;
-            padding-bottom: 6px;
-            color: #e2e8f0;
-            font-weight: 700;
+        .section-top-bar {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            border-bottom: 2px solid #20293f;
+            padding-bottom: 8px;
+            margin-bottom: 12px;
+            flex-shrink: 0;
+        }
+        .section-title {
+            font-size: 1.25rem;
+            margin: 0;
+            color: #f1f5f9;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
         .section-badge {
-            font-size: 0.72rem;
-            font-weight: 600;
-            padding: 2px 7px;
-            border-radius: 4px;
+            font-size: 0.76rem;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 5px;
             background: #1a2236;
             color: #60a5fa;
             text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
-        /* Stock Movers (Gainers & Losers) Side-by-Side */
-        .movers-container {
+        /* ==================== VIEW 1: PRIMARY FOCUS (MOVERS) ==================== */
+        .movers-panoramic {
             display: flex;
-            gap: 10px;
+            gap: 16px;
             flex: 1;
             min-height: 0;
         }
         .movers-col {
             flex: 1;
             background: #090c13;
-            border-radius: 8px;
-            padding: 8px 10px;
+            border-radius: 10px;
+            padding: 10px 14px;
             border: 1px solid #182033;
             display: flex;
             flex-direction: column;
-            min-width: 0;
+            min-height: 0;
         }
         .movers-hdr {
-            font-size: 0.88rem;
-            font-weight: 700;
-            padding-bottom: 6px;
-            margin-bottom: 8px;
+            font-size: 1.05rem;
+            font-weight: 800;
+            padding-bottom: 8px;
+            margin-bottom: 10px;
             border-bottom: 1px solid #1d273f;
             display: flex;
             align-items: center;
             justify-content: space-between;
+            flex-shrink: 0;
         }
         .movers-hdr.gainers { color: #10b981; }
         .movers-hdr.losers { color: #f43f5e; }
 
-        /* Clean Stock Row without Price: Just Ticker & Percentage Badge */
+        .movers-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            flex: 1;
+            overflow-y: auto;
+        }
         .stock-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 8px 10px;
-            border-radius: 6px;
-            margin-bottom: 6px;
+            padding: 10px 14px;
+            border-radius: 8px;
             background: #141826;
-            min-width: 0;
+            border: 1px solid #1c2236;
+            transition: transform 0.2s ease;
+        }
+        .stock-row:hover {
+            transform: translateX(4px);
+            background: #181d2e;
         }
         .stock-sym {
-            font-weight: 700;
+            font-weight: 800;
             color: #f8fafc;
-            font-size: 0.95rem;
-            letter-spacing: 0.3px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
+            font-size: 1.12rem;
+            letter-spacing: 0.4px;
         }
         .stock-chg {
-            font-weight: 700;
-            padding: 3px 8px;
-            border-radius: 5px;
-            font-size: 0.88rem;
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 1.02rem;
             white-space: nowrap;
-            flex-shrink: 0;
-            letter-spacing: 0.2px;
+            letter-spacing: 0.3px;
         }
         .chg-pos { background: rgba(16, 185, 129, 0.16); color: #10b981; }
         .chg-neg { background: rgba(244, 63, 94, 0.16); color: #f43f5e; }
 
-        /* News & Trends Feed Scroll */
-        .feed-scroll {
-            overflow-y: auto;
+        /* ==================== VIEW 2: NEWS & BUZZ ==================== */
+        .news-panoramic {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px 16px;
             flex: 1;
+            overflow-y: auto;
+            align-content: start;
             padding-right: 4px;
+        }
+        .news-card {
+            background: #0e121d;
+            border: 1px solid #1a2236;
+            border-left: 4px solid #3b82f6;
+            border-radius: 8px;
+            padding: 14px 16px;
+            font-size: 1.26rem; /* +20% larger for crystal clarity */
+            line-height: 1.45;
+            color: #e2e8f0;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+        .news-card:hover {
+            transform: translateY(-2px);
+            background: #131929;
+            border-color: #2a3756;
+        }
+        .news-bullet {
+            color: #3b82f6;
+            font-size: 1.55rem;
+            line-height: 1;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        /* ==================== VIEW 3: TRENDS & INDIA WIRE ==================== */
+        .trends-panoramic {
+            display: flex;
+            gap: 16px;
+            flex: 1;
             min-height: 0;
         }
-        .feed-scroll::-webkit-scrollbar { width: 4px; }
-        .feed-scroll::-webkit-scrollbar-thumb { background: #263352; border-radius: 4px; }
-
-        .list-item {
-            font-size: 0.88rem;
-            margin-bottom: 8px;
-            line-height: 1.35;
-            color: #cbd5e1;
-            padding: 7px 10px;
-            border-radius: 6px;
-            background: #0d101a;
-            border-left: 3px solid #3b82f6;
+        .trends-pane {
+            flex: 1;
+            background: #090c13;
+            border: 1px solid #182033;
+            border-radius: 10px;
+            padding: 12px 16px;
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+            overflow-y: auto;
         }
-        .list-item.trend-item {
-            border-left-color: #f59e0b;
+        .sub-header {
+            font-size: 1.25rem; /* +20% larger */
+            font-weight: 800;
+            color: #f59e0b;
+            padding-bottom: 8px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #1d273f;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+        .sub-header.breaking {
+            color: #ef4444;
+        }
+        .list-item {
+            font-size: 1.15rem; /* +20% larger */
+            margin-bottom: 8px;
+            line-height: 1.45;
+            color: #cbd5e1;
+            padding: 9px 12px;
+            border-radius: 6px;
+            background: #111522;
+            border-left: 3px solid #f59e0b;
         }
         .list-item.breaking-item {
             border-left-color: #ef4444;
         }
 
-        .sub-header {
-            font-size: 0.92rem;
-            font-weight: 700;
-            color: #f59e0b;
-            margin: 4px 0 6px 0;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-        .sub-header.breaking {
-            color: #ef4444;
-            margin-top: 10px;
-        }
+        /* Feed Scrollbar */
+        .feed-scroll::-webkit-scrollbar,
+        .news-panoramic::-webkit-scrollbar,
+        .movers-grid::-webkit-scrollbar,
+        .trends-pane::-webkit-scrollbar { width: 5px; }
+        .feed-scroll::-webkit-scrollbar-thumb,
+        .news-panoramic::-webkit-scrollbar-thumb,
+        .movers-grid::-webkit-scrollbar-thumb,
+        .trends-pane::-webkit-scrollbar-thumb { background: #263352; border-radius: 4px; }
 
-        /* Bottom Ticker Bar */
+        /* ==================== BOTTOM TICKER ==================== */
         .ticker-bar {
             background: linear-gradient(180deg, #131724 0%, #0d101a 100%);
-            padding: 10px 18px;
-            margin-top: 12px;
+            padding: 11px 16px;
+            margin-top: 10px;
             display: flex;
-            justify-content: space-between;
             align-items: center;
             border-radius: 10px;
             border: 1px solid #20273c;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
             flex-shrink: 0;
+            overflow: hidden;
+            position: relative;
         }
-        .ticker-item {
+        .ticker-bar:hover .ticker-track {
+            animation-play-state: paused;
+        }
+        .ticker-label {
             display: flex;
             align-items: center;
             gap: 7px;
+            background: #1b2238;
+            border: 1px solid #2d395d;
+            padding: 5px 12px;
+            border-radius: 6px;
+            font-size: 0.88rem;
+            font-weight: 800;
+            color: #60a5fa;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            z-index: 2;
+            flex-shrink: 0;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.4);
+        }
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #10b981;
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 0 8px #10b981;
+            animation: pulse-glow 2s infinite;
+        }
+        @keyframes pulse-glow {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(0.85); }
+        }
+        .ticker-viewport {
+            overflow: hidden;
+            flex: 1;
+            margin-left: 14px;
+            position: relative;
+            mask-image: linear-gradient(to right, transparent 0%, black 2%, black 98%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to right, transparent 0%, black 2%, black 98%, transparent 100%);
+        }
+        .ticker-track {
+            display: flex;
+            align-items: center;
+            width: max-content;
+            animation: scroll-ticker 36s linear infinite;
+            will-change: transform;
+        }
+        @keyframes scroll-ticker {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-50%, 0, 0); }
+        }
+        .ticker-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 0 22px;
+            white-space: nowrap;
+            flex-shrink: 0;
         }
         .ticker-name {
-            font-size: 0.84rem;
-            font-weight: 600;
+            font-size: 0.96rem;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.6px;
             color: #94a3b8;
         }
         .ticker-val {
-            font-size: 1.05rem;
+            font-size: 1.18rem;
             font-weight: 700;
             color: #ffffff;
             letter-spacing: -0.2px;
         }
         .ticker-badge {
-            font-size: 0.82rem;
+            font-size: 0.94rem;
             font-weight: 700;
-            padding: 2px 6px;
+            padding: 3px 8px;
             border-radius: 4px;
         }
         .ticker-badge.positive {
@@ -303,46 +587,199 @@
         }
         .ticker-sep {
             width: 1px;
-            height: 18px;
+            height: 22px;
             background: #252e45;
+            flex-shrink: 0;
         }
 
-        /* Responsive Adaptations for 1366x768 & Laptops */
+        /* ==================== FULL-SCREEN GERMAN SCREENSAVER ==================== */
+        .screensaver-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: #000000;
+            z-index: 999999;
+            display: none;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.8s ease;
+            overflow: hidden;
+            user-select: none;
+        }
+        .screensaver-overlay.active {
+            display: block;
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .screensaver-header {
+            position: absolute;
+            top: 14px;
+            left: 20px;
+            right: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+        }
+        .screensaver-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #94a3b8;
+            font-size: 0.92rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            background: rgba(15, 23, 42, 0.75);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            padding: 6px 16px;
+            border-radius: 20px;
+            backdrop-filter: blur(8px);
+        }
+        .screensaver-flag {
+            font-size: 1.15rem;
+        }
+        .screensaver-sep {
+            color: #475569;
+        }
+        #screensaver-countdown {
+            color: #ffca28;
+            font-family: monospace;
+            font-size: 1.05rem;
+            font-weight: 800;
+        }
+        .screensaver-exit-btn {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #94a3b8;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            backdrop-filter: blur(8px);
+        }
+        .screensaver-exit-btn:hover {
+            background: rgba(255, 255, 255, 0.12);
+            color: #ffffff;
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+        .screensaver-cards-stage {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .screensaver-card {
+            position: absolute;
+            width: 360px;
+            padding: 20px 24px;
+            border-radius: 16px;
+            background: linear-gradient(145deg, rgba(20, 26, 42, 0.94), rgba(11, 15, 24, 0.96));
+            border: 1px solid rgba(59, 130, 246, 0.45);
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.8), 0 0 25px rgba(59, 130, 246, 0.25);
+            color: #ffffff;
+            will-change: transform;
+            cursor: default;
+        }
+        .screensaver-card.card-0 {
+            border-color: rgba(255, 202, 40, 0.55);
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.8), 0 0 25px rgba(255, 202, 40, 0.25);
+        }
+        .screensaver-card.card-1 {
+            border-color: rgba(59, 130, 246, 0.55);
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.8), 0 0 25px rgba(59, 130, 246, 0.25);
+        }
+        .screensaver-card.card-2 {
+            border-color: rgba(16, 185, 129, 0.55);
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.8), 0 0 25px rgba(16, 185, 129, 0.25);
+        }
+        .card-word-badge {
+            display: inline-block;
+            font-size: 0.72rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-bottom: 8px;
+            background: rgba(255, 255, 255, 0.08);
+            color: #94a3b8;
+        }
+        .card-german {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #ffca28;
+            margin: 0 0 6px 0;
+            line-height: 1.2;
+            letter-spacing: -0.3px;
+        }
+        .screensaver-card.card-1 .card-german { color: #60a5fa; }
+        .screensaver-card.card-2 .card-german { color: #34d399; }
+
+        .card-english {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: #f1f5f9;
+            margin: 0 0 8px 0;
+            line-height: 1.3;
+        }
+        .card-sentence {
+            font-size: 0.95rem;
+            font-style: italic;
+            color: #93c5fd;
+            margin: 0;
+            line-height: 1.4;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 8px;
+        }
+        @keyframes dropBounce {
+            0% { transform: translate3d(0, -350px, 0); opacity: 0; }
+            65% { transform: translate3d(0, 20px, 0); opacity: 1; }
+            80% { transform: translate3d(0, -10px, 0); }
+            100% { transform: translate3d(0, 0, 0); }
+        }
+
+        /* 1366x768 Responsive Tweaks */
         @media (max-width: 1400px), (max-height: 800px) {
-            body {
-                padding: 8px 14px;
-            }
-            .header {
-                padding-bottom: 6px;
-                margin-bottom: 8px;
-            }
-            .time-box h1 { font-size: 2rem; }
-            .time-box h3 { font-size: 0.8rem; }
-            .weather-box { padding: 5px 12px; }
-            .weather-temp-cond { font-size: 1.25rem; }
-            .flashcard { padding: 5px 12px; }
-            .flashcard h2 { font-size: 1.2rem; }
-            .flashcard p { font-size: 0.8rem; }
-            .grid { gap: 10px; }
-            .col { padding: 9px 10px; }
-            h2.section-title { font-size: 0.98rem; margin-bottom: 6px; padding-bottom: 4px; }
-            .movers-hdr { font-size: 0.82rem; margin-bottom: 5px; }
-            .stock-row { padding: 6px 8px; margin-bottom: 4px; }
-            .stock-sym { font-size: 0.88rem; }
-            .stock-chg { font-size: 0.8rem; padding: 2px 6px; }
-            .list-item { font-size: 0.8rem; padding: 5px 8px; margin-bottom: 6px; }
-            .sub-header { font-size: 0.84rem; margin: 3px 0 5px 0; }
-            .ticker-bar { padding: 8px 14px; margin-top: 8px; }
-            .ticker-name { font-size: 0.78rem; }
-            .ticker-val { font-size: 0.92rem; }
-            .ticker-badge { font-size: 0.76rem; }
+            body { padding: 8px 14px; }
+            .time-box h1 { font-size: 1.85rem; }
+            .time-box h3 { font-size: 0.78rem; }
+            .playback-btn { padding: 3px 8px; font-size: 0.72rem; }
+            .weather-box { padding: 4px 12px; }
+            .weather-temp-cond { font-size: 1.2rem; }
+            .flashcard { padding: 4px 12px; }
+            .flashcard h2 { font-size: 1.15rem; }
+            .carousel-tab { padding: 4px 10px; font-size: 0.78rem; }
+            .section-title { font-size: 1.1rem; }
+            .stock-sym { font-size: 1rem; }
+            .stock-chg { font-size: 0.92rem; padding: 2px 7px; }
+            .news-card { font-size: 1.15rem; padding: 11px 14px; } /* +21% for clarity on 1366x768 */
+            .news-bullet { font-size: 1.45rem; }
+            .sub-header { font-size: 1.15rem; }
+            .list-item { font-size: 1.06rem; padding: 8px 12px; } /* +20.5% for clarity on 1366x768 */
+            .ticker-bar { padding: 9px 14px; margin-top: 6px; }
+            .ticker-name { font-size: 0.9rem; }
+            .ticker-val { font-size: 1.06rem; }
+            .ticker-badge { font-size: 0.88rem; }
         }
     </style>
 </head>
 <body>
+    <!-- Top Header -->
     <div class="header">
         <div class="time-box">
-            <h1 id="clock">--:--</h1>
+            <div class="time-row">
+                <h1 id="clock">--:--</h1>
+                <button id="playback-btn" class="playback-btn" onclick="togglePlayback()" title="Stop animation & show homescreen" aria-label="Toggle animation">
+                    <span id="playback-icon" class="playback-icon">
+                        <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><rect x="4" y="4" width="16" height="16" rx="2"/></svg>
+                    </span>
+                    <span id="playback-label">Stop</span>
+                </button>
+            </div>
             <h3 id="date-mode">Loading...</h3>
         </div>
 
@@ -359,63 +796,132 @@
         </div>
 
         <!-- German Flashcard Widget -->
-        <div class="flashcard">
+        <div class="flashcard" onclick="startGermanScreensaver(300)" title="Click to preview German Screensaver" style="cursor: pointer;">
             <h2 id="ger-word">Laden...</h2>
             <p id="ger-eng">Loading...</p>
             <p id="ger-sent"></p>
         </div>
     </div>
 
-    <div class="grid">
-        <!-- Column 1: Primary Focus (Movers Side-by-Side: Ticker & Percentage only) -->
-        <div class="col">
-            <h2 class="section-title">
-                Primary Focus
-                <span class="section-badge" id="primary-market-badge">Market Movers</span>
-            </h2>
-            <div class="movers-container">
-                <div class="movers-col">
-                    <div class="movers-hdr gainers">▲ Top 6 Gainers</div>
-                    <div id="nasdaq-gainers" class="feed-scroll"></div>
+    <!-- 2-Minute Rotating Section Header & Tabs -->
+    <div class="carousel-nav">
+        <div class="carousel-tabs">
+            <button class="carousel-tab active" onclick="switchSection(0)" id="tab-0">
+                <span class="tab-num">1</span>
+                <span class="tab-text" id="tab-primary-label">Primary Focus</span>
+            </button>
+            <button class="carousel-tab" onclick="switchSection(1)" id="tab-1">
+                <span class="tab-num">2</span>
+                <span class="tab-text">News &amp; Buzz</span>
+            </button>
+            <button class="carousel-tab" onclick="switchSection(2)" id="tab-2">
+                <span class="tab-num">3</span>
+                <span class="tab-text">Trends &amp; Wire</span>
+            </button>
+        </div>
+        <div class="carousel-timer-info">
+            <span>Next in:</span>
+            <span class="countdown-badge" id="rotation-countdown">2:00</span>
+        </div>
+    </div>
+    <div class="progress-container">
+        <div class="progress-bar" id="carousel-progress-bar"></div>
+    </div>
+
+    <!-- Middle Full-Width Viewport (Cycles every 2 minutes) -->
+    <div class="carousel-viewport" id="carousel-viewport">
+        <!-- Slide 0: Primary Focus (Full-Width Panoramic Movers) -->
+        <div class="carousel-slide active" id="slide-0">
+            <div class="full-section-card">
+                <div class="section-top-bar">
+                    <h2 class="section-title">
+                        <span>📊 Primary Focus: Market Movers</span>
+                        <span class="section-badge" id="primary-market-badge">Market Movers</span>
+                    </h2>
                 </div>
-                <div class="movers-col">
-                    <div class="movers-hdr losers">▼ Top 6 Losers</div>
-                    <div id="nasdaq-losers" class="feed-scroll"></div>
+                <div class="movers-panoramic">
+                    <div class="movers-col">
+                        <div class="movers-hdr gainers">▲ Top 6 Gainers</div>
+                        <div id="nasdaq-gainers" class="movers-grid"></div>
+                    </div>
+                    <div class="movers-col">
+                        <div class="movers-hdr losers">▼ Top 6 Losers</div>
+                        <div id="nasdaq-losers" class="movers-grid"></div>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- Column 2: News & Buzz -->
-        <div class="col">
-            <h2 class="section-title">
-                News & Buzz
-                <span class="section-badge" id="news-mode-badge">Market News</span>
-            </h2>
-            <div id="news-data" class="feed-scroll"></div>
+        <!-- Slide 1: News & Buzz (Full-Width Dual-Column Grid) -->
+        <div class="carousel-slide" id="slide-1">
+            <div class="full-section-card">
+                <div class="section-top-bar">
+                    <h2 class="section-title">
+                        <span>📰 News &amp; Buzz</span>
+                        <span class="section-badge" id="news-mode-badge">Market News</span>
+                    </h2>
+                </div>
+                <div id="news-data" class="news-panoramic"></div>
+            </div>
         </div>
 
-        <!-- Column 3: Google Trends & India Breaking News -->
-        <div class="col">
-            <h2 class="section-title">
-                Trends & India Wire
-                <span class="section-badge">Live Feeds</span>
-            </h2>
-            <div class="feed-scroll">
-                <div class="sub-header">🔥 Top 5 Viral Trends (India)</div>
-                <div id="trends-data"></div>
-
-                <div class="sub-header breaking">⚡ Top 5 Breaking News (India)</div>
-                <div id="breaking-india-data"></div>
+        <!-- Slide 2: Trends & India Wire (Full-Width Side-by-Side Panels) -->
+        <div class="carousel-slide" id="slide-2">
+            <div class="full-section-card">
+                <div class="section-top-bar">
+                    <h2 class="section-title">
+                        <span>🇮🇳 Google Trends &amp; India Wire</span>
+                        <span class="section-badge">Live Feeds</span>
+                    </h2>
+                </div>
+                <div class="trends-panoramic">
+                    <div class="trends-pane">
+                        <div class="sub-header">🔥 Top 5 Viral Trends (India)</div>
+                        <div id="trends-data" class="feed-scroll"></div>
+                    </div>
+                    <div class="trends-pane">
+                        <div class="sub-header breaking">⚡ Top 5 Breaking News (India)</div>
+                        <div id="breaking-india-data" class="feed-scroll"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- Bottom Ticker Bar -->
-    <div class="ticker-bar" id="ticker">
-        <div class="ticker-item"><span class="ticker-name">Loading ticker...</span></div>
+    <!-- Bottom Running Marquee Ticker Tape -->
+    <div class="ticker-bar" id="ticker-bar">
+        <div class="ticker-label">
+            <span class="pulse-dot"></span>
+            MARKETS
+        </div>
+        <div class="ticker-viewport">
+            <div class="ticker-track" id="ticker-track">
+                <div class="ticker-item"><span class="ticker-name">Loading live tape...</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Full-Screen German Screensaver Overlay (5-minute intermission after 1 full cycle) -->
+    <div id="german-screensaver" class="screensaver-overlay">
+        <!-- Ambient Header Status & Dismiss -->
+        <div class="screensaver-header">
+            <div class="screensaver-title">
+                <span class="screensaver-flag">🇩🇪</span>
+                <span>DEUTSCHE WORTPAUSE</span>
+                <span class="screensaver-sep">•</span>
+                <span id="screensaver-countdown">05:00</span>
+            </div>
+            <button class="screensaver-exit-btn" onclick="exitScreensaver()" title="Return to Dashboard">
+                ✕ Return to Dashboard
+            </button>
+        </div>
+
+        <!-- 3 Floating & Colliding Vocabulary Cards -->
+        <div id="screensaver-cards-container" class="screensaver-cards-stage"></div>
     </div>
 
     <script>
+        // German Vocabulary Flashcard
         function updateFlashcard() {
             fetch('/api/flashcard')
                 .then(r => r.json())
@@ -436,11 +942,11 @@
             return 'aqi-unhealthy';
         }
 
-        // Render stock rows with ONLY symbol and percentage change (no prices)
+        // Render stock rows with symbol and percentage change
         function renderStockRows(stocks, containerId) {
             const container = document.getElementById(containerId);
             if (!stocks || stocks.length === 0) {
-                container.innerHTML = '<div style="color:#64748b; padding:10px; font-size:0.85rem;">No data available</div>';
+                container.innerHTML = '<div style="color:#64748b; padding:10px; font-size:0.95rem;">No data available</div>';
                 return;
             }
             let html = '';
@@ -458,6 +964,427 @@
             container.innerHTML = html;
         }
 
+        // Running Ticker Tape (Smooth In-Place Updates)
+        function renderTickerTape(tickerData) {
+            const track = document.getElementById('ticker-track');
+            if (!track || !tickerData || tickerData.length === 0) return;
+
+            function createItemNodes(dataList) {
+                let html = '';
+                dataList.forEach(t => {
+                    const isPos = t.change >= 0;
+                    const badgeClass = isPos ? 'positive' : 'negative';
+                    const sign = isPos ? '+' : '';
+                    html += `
+                        <div class="ticker-item">
+                            <span class="ticker-name">${t.name}</span>
+                            <span class="ticker-val">${t.price}</span>
+                            <span class="ticker-badge ${badgeClass}">${sign}${t.change}%</span>
+                            <span class="ticker-sep"></span>
+                        </div>
+                    `;
+                });
+                return html;
+            }
+
+            const existingItems = track.querySelectorAll('.ticker-item');
+            const expectedCount = tickerData.length * 2; // Set A + Set B
+
+            if (existingItems.length !== expectedCount) {
+                const setHtml = createItemNodes(tickerData);
+                track.innerHTML = setHtml + setHtml; // Duplicate for seamless infinite loop
+            } else {
+                const fullList = tickerData.concat(tickerData);
+                existingItems.forEach((itemNode, idx) => {
+                    const t = fullList[idx];
+                    const isPos = t.change >= 0;
+                    const badgeClass = isPos ? 'positive' : 'negative';
+                    const sign = isPos ? '+' : '';
+                    
+                    const nameNode = itemNode.querySelector('.ticker-name');
+                    const valNode = itemNode.querySelector('.ticker-val');
+                    const badgeNode = itemNode.querySelector('.ticker-badge');
+
+                    if (nameNode && nameNode.innerText !== t.name) nameNode.innerText = t.name;
+                    if (valNode && valNode.innerText !== t.price) valNode.innerText = t.price;
+                    if (badgeNode) {
+                        badgeNode.innerText = `${sign}${t.change}%`;
+                        badgeNode.className = `ticker-badge ${badgeClass}`;
+                    }
+                });
+            }
+            if (!isAnimationEnabled) {
+                setTickerAnimationState(false);
+            }
+        }
+
+        // ==================== 2-MINUTE SECTION CAROUSEL & PLAYBACK CONTROLS ====================
+        const ROTATION_INTERVAL_SECS = 120; // 2 minutes
+        let currentSection = 0;
+        let secondsRemaining = ROTATION_INTERVAL_SECS;
+        let isAnimationEnabled = true;
+
+        function setTickerAnimationState(running) {
+            const tracks = document.querySelectorAll('.ticker-track');
+            tracks.forEach(track => {
+                track.style.animationPlayState = running ? 'running' : 'paused';
+            });
+        }
+
+        function togglePlayback() {
+            isAnimationEnabled = !isAnimationEnabled;
+            applyPlaybackState();
+        }
+
+        function applyPlaybackState() {
+            const btn = document.getElementById('playback-btn');
+            const icon = document.getElementById('playback-icon');
+            const label = document.getElementById('playback-label');
+            const countdown = document.getElementById('rotation-countdown');
+
+            if (isAnimationEnabled) {
+                // Animation enabled
+                btn.classList.remove('paused');
+                btn.title = "Stop animation & show homescreen";
+                icon.innerHTML = '<svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><rect x="4" y="4" width="16" height="16" rx="2"/></svg>';
+                label.innerText = "Stop";
+                
+                // Resume ticker animation
+                setTickerAnimationState(true);
+                
+                // Reset rotation timer to 2 minutes
+                secondsRemaining = ROTATION_INTERVAL_SECS;
+                updateTimerDisplay();
+            } else {
+                // Animation stopped
+                if (isScreensaverActive) {
+                    exitScreensaver();
+                }
+
+                btn.classList.add('paused');
+                btn.title = "Enable animation";
+                icon.innerHTML = '<svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
+                label.innerText = "Play";
+                
+                // Pause ticker animation
+                setTickerAnimationState(false);
+                
+                // Display homescreen (Slide 0: Primary Focus)
+                switchSection(0);
+                
+                if (countdown) countdown.innerText = "PAUSED";
+                const progressBar = document.getElementById('carousel-progress-bar');
+                if (progressBar) progressBar.style.width = "0%";
+            }
+        }
+
+        function switchSection(index) {
+            currentSection = index;
+            secondsRemaining = ROTATION_INTERVAL_SECS;
+
+            // Update Tab states
+            for (let i = 0; i < 3; i++) {
+                const tab = document.getElementById(`tab-${i}`);
+                const slide = document.getElementById(`slide-${i}`);
+                if (i === currentSection) {
+                    tab.classList.add('active');
+                    slide.classList.add('active');
+                } else {
+                    tab.classList.remove('active');
+                    slide.classList.remove('active');
+                }
+            }
+
+            if (isAnimationEnabled) {
+                updateTimerDisplay();
+            } else {
+                const countdown = document.getElementById('rotation-countdown');
+                if (countdown) countdown.innerText = "PAUSED";
+                const progressBar = document.getElementById('carousel-progress-bar');
+                if (progressBar) progressBar.style.width = "0%";
+            }
+        }
+
+        function updateTimerDisplay() {
+            if (!isAnimationEnabled) {
+                const countdown = document.getElementById('rotation-countdown');
+                if (countdown) countdown.innerText = "PAUSED";
+                const progressBar = document.getElementById('carousel-progress-bar');
+                if (progressBar) progressBar.style.width = "0%";
+                return;
+            }
+            const mins = Math.floor(secondsRemaining / 60);
+            const secs = secondsRemaining % 60;
+            const formattedTime = `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+            document.getElementById('rotation-countdown').innerText = formattedTime;
+
+            const progressPct = ((ROTATION_INTERVAL_SECS - secondsRemaining) / ROTATION_INTERVAL_SECS) * 100;
+            document.getElementById('carousel-progress-bar').style.width = `${progressPct}%`;
+        }
+
+        // Second-by-second timer tick for 2-Minute Section Rotation
+        setInterval(() => {
+            if (!isAnimationEnabled) return;
+            if (isScreensaverActive) return; // Do not tick carousel when screensaver is roaming!
+            
+            secondsRemaining--;
+            if (secondsRemaining <= 0) {
+                if (currentSection === 2) {
+                    // Completed 1 full cycle (Slide 0 -> Slide 1 -> Slide 2)!
+                    // Trigger full-screen black German screensaver for 5 minutes (300s)
+                    startGermanScreensaver(300);
+                } else {
+                    switchSection((currentSection + 1) % 3);
+                }
+            } else {
+                updateTimerDisplay();
+            }
+        }, 1000);
+
+        // ==================== GERMAN VOCABULARY SCREENSAVER ENGINE ====================
+        let isScreensaverActive = false;
+        let screensaverRemaining = 300; // 5 minutes
+        let screensaverTimerInterval = null;
+        let screensaverPhysicsAnimFrame = null;
+        let floatingCards = [];
+
+        function startGermanScreensaver(durationSecs = 300) {
+            isScreensaverActive = true;
+            screensaverRemaining = durationSecs;
+
+            const overlay = document.getElementById('german-screensaver');
+            overlay.classList.add('active');
+
+            // Pause the bottom ticker animation while screensaver is covering the screen
+            setTickerAnimationState(false);
+
+            // Fetch 3 German words from our endpoint
+            fetch('/api/german-screensaver')
+                .then(r => r.json())
+                .then(words => {
+                    setupScreensaverCards(words);
+                })
+                .catch(() => {
+                    const fallback = [
+                        {"german": "der Bahnhof", "english": "the train station", "sentence": "Ich gehe zum Bahnhof."},
+                        {"german": "die Zeitung", "english": "the newspaper", "sentence": "Sie liest die Zeitung."},
+                        {"german": "erfolgreich", "english": "successful", "sentence": "Das Projekt war sehr erfolgreich."}
+                    ];
+                    setupScreensaverCards(fallback);
+                });
+
+            updateScreensaverCountdown();
+
+            if (screensaverTimerInterval) clearInterval(screensaverTimerInterval);
+            screensaverTimerInterval = setInterval(() => {
+                screensaverRemaining--;
+                updateScreensaverCountdown();
+                if (screensaverRemaining <= 0) {
+                    exitScreensaver();
+                }
+            }, 1000);
+        }
+
+        function updateScreensaverCountdown() {
+            const mins = Math.floor(screensaverRemaining / 60);
+            const secs = screensaverRemaining % 60;
+            const el = document.getElementById('screensaver-countdown');
+            if (el) el.innerText = `${mins < 10 ? '0' : ''}${mins}:${secs < 10 ? '0' : ''}${secs}`;
+        }
+
+        function exitScreensaver() {
+            if (!isScreensaverActive) return;
+            isScreensaverActive = false;
+
+            if (screensaverTimerInterval) {
+                clearInterval(screensaverTimerInterval);
+                screensaverTimerInterval = null;
+            }
+            if (screensaverPhysicsAnimFrame) {
+                cancelAnimationFrame(screensaverPhysicsAnimFrame);
+                screensaverPhysicsAnimFrame = null;
+            }
+
+            const overlay = document.getElementById('german-screensaver');
+            overlay.classList.remove('active');
+
+            // Resume bottom ticker if playback is enabled
+            if (isAnimationEnabled) {
+                setTickerAnimationState(true);
+            }
+
+            // Return to Slide 0 (Primary Focus) and start next cycle
+            switchSection(0);
+        }
+
+        function setupScreensaverCards(words) {
+            const container = document.getElementById('screensaver-cards-container');
+            container.innerHTML = '';
+            floatingCards = [];
+
+            const W = window.innerWidth;
+            const H = window.innerHeight;
+
+            const cardWidth = Math.min(360, Math.floor(W * 0.36));
+            const cardHeight = 168;
+
+            // Diverse spawn points across the screen
+            const spawnX = [
+                Math.floor(W * 0.08),
+                Math.floor(W * 0.38),
+                Math.floor(W * 0.68)
+            ];
+            const spawnY = [
+                Math.floor(H * 0.18),
+                Math.floor(H * 0.48),
+                Math.floor(H * 0.28)
+            ];
+
+            const initialSpeeds = [
+                { vx: 1.6, vy: 1.2 },
+                { vx: -1.4, vy: 1.5 },
+                { vx: 1.3, vy: -1.6 }
+            ];
+
+            words.slice(0, 3).forEach((item, index) => {
+                const cardEl = document.createElement('div');
+                cardEl.className = `screensaver-card card-${index}`;
+                cardEl.innerHTML = `
+                    <div class="card-word-badge">Wort des Tages • #${index + 1}</div>
+                    <div class="card-german">${item.german}</div>
+                    <div class="card-english">${item.english}</div>
+                    <div class="card-sentence">"${item.sentence}"</div>
+                `;
+
+                // Initial drop animation
+                cardEl.style.animation = `dropBounce 0.9s cubic-bezier(0.25, 1, 0.5, 1) ${index * 0.2}s forwards`;
+                container.appendChild(cardEl);
+
+                const spd = initialSpeeds[index] || { vx: 1.5, vy: 1.2 };
+
+                const cardObj = {
+                    el: cardEl,
+                    x: spawnX[index] || 100 + index * 200,
+                    y: spawnY[index] || 150 + index * 100,
+                    vx: spd.vx,
+                    vy: spd.vy,
+                    w: cardWidth,
+                    h: cardHeight
+                };
+
+                // Apply initial position
+                cardEl.style.transform = `translate3d(${cardObj.x}px, ${cardObj.y}px, 0)`;
+                floatingCards.push(cardObj);
+            });
+
+            // Start physics simulation after drop animation finishes
+            setTimeout(() => {
+                if (floatingCards.length > 0) {
+                    floatingCards.forEach(c => {
+                        c.el.style.animation = 'none';
+                    });
+                }
+                if (isScreensaverActive) {
+                    if (screensaverPhysicsAnimFrame) cancelAnimationFrame(screensaverPhysicsAnimFrame);
+                    screensaverPhysicsAnimFrame = requestAnimationFrame(runScreensaverPhysics);
+                }
+            }, 1200);
+        }
+
+        function runScreensaverPhysics() {
+            if (!isScreensaverActive) return;
+
+            const W = window.innerWidth;
+            const H = window.innerHeight;
+            const topBoundary = 65; // keep clear of top header info
+
+            // 1. Update positions & Wall Bounces
+            for (let i = 0; i < floatingCards.length; i++) {
+                const c = floatingCards[i];
+                c.x += c.vx;
+                c.y += c.vy;
+
+                // Left & Right Wall Bounce
+                if (c.x <= 15) {
+                    c.x = 15;
+                    c.vx = Math.abs(c.vx);
+                } else if (c.x + c.w >= W - 15) {
+                    c.x = W - 15 - c.w;
+                    c.vx = -Math.abs(c.vx);
+                }
+
+                // Top & Bottom Wall Bounce
+                if (c.y <= topBoundary) {
+                    c.y = topBoundary;
+                    c.vy = Math.abs(c.vy);
+                } else if (c.y + c.h >= H - 20) {
+                    c.y = H - 20 - c.h;
+                    c.vy = -Math.abs(c.vy);
+                }
+            }
+
+            // 2. Inter-Card Collision Check (Elastic Bouncing)
+            for (let i = 0; i < floatingCards.length; i++) {
+                for (let j = i + 1; j < floatingCards.length; j++) {
+                    const c1 = floatingCards[i];
+                    const c2 = floatingCards[j];
+
+                    const c1CenterX = c1.x + c1.w / 2;
+                    const c1CenterY = c1.y + c1.h / 2;
+                    const c2CenterX = c2.x + c2.w / 2;
+                    const c2CenterY = c2.y + c2.h / 2;
+
+                    const dx = c2CenterX - c1CenterX;
+                    const dy = c2CenterY - c1CenterY;
+
+                    const minDistX = (c1.w + c2.w) / 2;
+                    const minDistY = (c1.h + c2.h) / 2;
+
+                    if (Math.abs(dx) < minDistX && Math.abs(dy) < minDistY) {
+                        // Collision detected! Calculate overlap depths
+                        const overlapX = minDistX - Math.abs(dx);
+                        const overlapY = minDistY - Math.abs(dy);
+
+                        if (overlapX < overlapY) {
+                            // Separate along X
+                            const signX = dx > 0 ? 1 : -1;
+                            c1.x -= (overlapX / 2) * signX;
+                            c2.x += (overlapX / 2) * signX;
+                            // Swap/reverse X velocities
+                            const tempVx = c1.vx;
+                            c1.vx = c2.vx;
+                            c2.vx = tempVx;
+                        } else {
+                            // Separate along Y
+                            const signY = dy > 0 ? 1 : -1;
+                            c1.y -= (overlapY / 2) * signY;
+                            c2.y += (overlapY / 2) * signY;
+                            // Swap/reverse Y velocities
+                            const tempVy = c1.vy;
+                            c1.vy = c2.vy;
+                            c2.vy = tempVy;
+                        }
+                    }
+                }
+            }
+
+            // 3. Render Positions
+            for (let i = 0; i < floatingCards.length; i++) {
+                const c = floatingCards[i];
+                c.el.style.transform = `translate3d(${c.x}px, ${c.y}px, 0)`;
+            }
+
+            screensaverPhysicsAnimFrame = requestAnimationFrame(runScreensaverPhysics);
+        }
+
+        // Global key listener to dismiss screensaver on Escape
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && isScreensaverActive) {
+                exitScreensaver();
+            }
+        });
+
+        // Fetch & Update Live Data
         function updateDashboard() {
             fetch('/api/data')
                 .then(r => r.json())
@@ -479,36 +1406,41 @@
                         aqiElem.className = "aqi-pill " + getAqiClass(data.weather.aqi);
                     }
 
-                    // Column 1: Primary Focus (Top 6 Gainers & Losers - Symbol & Percentage ONLY)
+                    // Section 1: Primary Focus
                     if (data.primary_focus) {
                         document.getElementById('primary-market-badge').innerText = data.primary_focus.market;
+                        document.getElementById('tab-primary-label').innerText = data.primary_focus.market + " Movers";
                         renderStockRows(data.primary_focus.gainers, 'nasdaq-gainers');
                         renderStockRows(data.primary_focus.losers, 'nasdaq-losers');
                     }
 
-                    // Column 2: News & Buzz
+                    // Section 2: News & Buzz (Dual-Column Cards)
                     let newsHtml = '';
                     if (data.news && data.news.length > 0) {
                         data.news.forEach(n => {
-                            newsHtml += `<div class="list-item">${n.title}</div>`;
+                            newsHtml += `
+                                <div class="news-card">
+                                    <span class="news-bullet">▪</span>
+                                    <span>${n.title}</span>
+                                </div>
+                            `;
                         });
                     } else {
                         newsHtml = '<div style="color:#64748b; padding:10px;">Loading news...</div>';
                     }
                     document.getElementById('news-data').innerHTML = newsHtml;
 
-                    // Column 3: Top 5 Viral Trends (India)
+                    // Section 3: Viral Trends & Breaking News (India)
                     let trendsHtml = '';
                     if (data.trends && data.trends.length > 0) {
                         data.trends.forEach(t => {
-                            trendsHtml += `<div class="list-item trend-item">🔥 ${t.title}</div>`;
+                            trendsHtml += `<div class="list-item">🔥 ${t.title}</div>`;
                         });
                     } else {
                         trendsHtml = '<div style="color:#64748b; padding:10px;">Loading viral trends...</div>';
                     }
                     document.getElementById('trends-data').innerHTML = trendsHtml;
 
-                    // Column 3: Top 5 Breaking News (India)
                     let breakingHtml = '';
                     if (data.breaking_india && data.breaking_india.length > 0) {
                         data.breaking_india.forEach(b => {
@@ -519,26 +1451,8 @@
                     }
                     document.getElementById('breaking-india-data').innerHTML = breakingHtml;
 
-                    // Bottom Ticker Bar: Nifty 50, Sensex, Gold, Silver, Brent, USD/INR
-                    let tickerHtml = '';
-                    if (data.ticker && data.ticker.length > 0) {
-                        data.ticker.forEach((t, idx) => {
-                            const isPos = t.change >= 0;
-                            const badgeClass = isPos ? 'positive' : 'negative';
-                            const sign = isPos ? '+' : '';
-                            tickerHtml += `
-                                <div class="ticker-item">
-                                    <span class="ticker-name">${t.name}</span>
-                                    <span class="ticker-val">${t.price}</span>
-                                    <span class="ticker-badge ${badgeClass}">${sign}${t.change}%</span>
-                                </div>
-                            `;
-                            if (idx < data.ticker.length - 1) {
-                                tickerHtml += `<div class="ticker-sep"></div>`;
-                            }
-                        });
-                    }
-                    document.getElementById('ticker').innerHTML = tickerHtml;
+                    // Bottom Running Marquee Ticker Tape
+                    renderTickerTape(data.ticker);
                 })
                 .catch(err => {
                     console.error("Dashboard update failed:", err);
@@ -549,6 +1463,7 @@
         setInterval(updateDashboard, 60000);  // Refresh dashboard data every 60 seconds
         updateFlashcard();
         updateDashboard();
+        updateTimerDisplay();
     </script>
 </body>
 </html>
