@@ -1,4 +1,5 @@
 import os
+import re
 import random
 import time
 from datetime import datetime
@@ -64,17 +65,19 @@ CACHE_TTL_SECS = 45  # Refresh market data every 45 seconds
 
 def get_bareilly_weather():
     now_ts = time.time()
-    if _cache["weather"]["data"] and (now_ts - _cache["weather"]["ts"] < 300):
+    # Dynamic 60-second cache for weather and AQI
+    if _cache["weather"]["data"] and (now_ts - _cache["weather"]["ts"] < 60):
         return _cache["weather"]["data"]
 
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
     }
 
-    # 1. Fetch Temperature & Weather Condition
+    # 1. Fetch Temperature & Weather Condition (Open-Meteo primary, wttr.in fallback)
+    weather_fetched = False
     try:
         url = "https://api.open-meteo.com/v1/forecast?latitude=28.367&longitude=79.4304&current=temperature_2m,weather_code&timezone=auto"
-        res = requests.get(url, headers=headers, verify=False, timeout=8).json()
+        res = requests.get(url, headers=headers, verify=False, timeout=5).json()
         cur = res.get('current', {})
         if 'temperature_2m' in cur:
             _last_known_weather["temp"] = f"{cur['temperature_2m']}°C"
@@ -84,16 +87,31 @@ def get_bareilly_weather():
                 71: 'Snow', 80: 'Rain Showers', 95: 'Thunderstorm'
             }
             _last_known_weather["condition"] = code_map.get(cur.get('weather_code'), 'Clear')
+            weather_fetched = True
     except Exception:
         pass
 
-    # 2. Fetch AQI independently
+    if not weather_fetched:
+        try:
+            w_res = requests.get('https://wttr.in/Bareilly?format=j1', headers=headers, verify=False, timeout=5).json()
+            cur_w = w_res.get('current_condition', [{}])[0]
+            if 'temp_C' in cur_w:
+                _last_known_weather["temp"] = f"{cur_w['temp_C']}°C"
+                desc = cur_w.get('weatherDesc', [{}])[0].get('value', 'Clear').strip()
+                _last_known_weather["condition"] = desc
+        except Exception:
+            pass
+
+    # 2. Fetch Live Ground Station AQI for Bareilly Civil Lines via AQICN / CPCB
     try:
-        aq_url = "https://air-quality-api.open-meteo.com/v1/air-quality?latitude=28.367&longitude=79.4304&current=us_aqi&timezone=auto"
-        aq_res = requests.get(aq_url, headers=headers, verify=False, timeout=8).json()
-        cur_aq = aq_res.get('current', {})
-        if 'us_aqi' in cur_aq:
-            _last_known_weather["aqi"] = cur_aq['us_aqi']
+        aq_res = requests.get('https://aqicn.org/city/india/bareilly/civil-lines/', headers=headers, verify=False, timeout=5)
+        m = re.findall(r'"aqi":(\d+)', aq_res.text)
+        if m:
+            _last_known_weather["aqi"] = int(m[0])
+        else:
+            m2 = re.search(r'id=["\']aqivignette["\'][^>]*>(\d+)', aq_res.text)
+            if m2:
+                _last_known_weather["aqi"] = int(m2.group(1))
     except Exception:
         pass
 
@@ -123,6 +141,76 @@ def get_rss(url, limit=5, fallback_url=None):
             pass
             
     return []
+
+def get_fresh_news(limit_per_category=4):
+    """Fetches real-time Global and India news with relative timestamps."""
+    global_url = "https://news.google.com/rss/headlines/section/topic/BUSINESS?hl=en-US&gl=US&ceid=US:en"
+    local_url = "https://news.google.com/rss/headlines/section/topic/BUSINESS?hl=en-IN&gl=IN&ceid=IN:en"
+    
+    def parse_feed_items(url, source_label, fallback_url=None):
+        items = []
+        now_ts = time.time()
+        feed = None
+        try:
+            feed = feedparser.parse(url)
+        except Exception:
+            pass
+
+        if (not feed or not feed.entries) and fallback_url:
+            try:
+                feed = feedparser.parse(fallback_url)
+            except Exception:
+                pass
+
+        if feed and feed.entries:
+            for e in feed.entries[:10]:
+                title = e.get('title', '').strip()
+                if not title:
+                    continue
+                
+                pub_ts = None
+                if hasattr(e, 'published_parsed') and e.published_parsed:
+                    try:
+                        pub_ts = time.mktime(e.published_parsed)
+                    except Exception:
+                        pass
+                
+                time_tag = "Live"
+                if pub_ts:
+                    diff_mins = int((now_ts - pub_ts) / 60)
+                    if diff_mins < 0:
+                        diff_mins = 0
+                    if diff_mins < 60:
+                        time_tag = f"{diff_mins}m ago"
+                    elif diff_mins < 1440:
+                        time_tag = f"{diff_mins // 60}h ago"
+                    else:
+                        time_tag = f"{diff_mins // 1440}d ago"
+
+                items.append({
+                    "title": title,
+                    "time_tag": time_tag,
+                    "source": source_label,
+                    "pub_ts": pub_ts or now_ts
+                })
+        items.sort(key=lambda x: x['pub_ts'], reverse=True)
+        return items[:limit_per_category]
+
+    global_news = parse_feed_items(global_url, "Global", "https://search.cnbc.com/rs/search/view.html?partnerId=2000&keywords=markets&sort=date&type=rss")
+    local_news = parse_feed_items(local_url, "India", "https://economictimes.indiatimes.com/markets/stocks/rssfeeds/2146842.cms")
+
+    combined = []
+    for i in range(max(len(global_news), len(local_news))):
+        if i < len(global_news):
+            combined.append(global_news[i])
+        if i < len(local_news):
+            combined.append(local_news[i])
+
+    return {
+        "global": global_news,
+        "local": local_news,
+        "combined": combined[:6]
+    }
 
 def get_nasdaq_movers():
     now_ts = time.time()
@@ -326,8 +414,11 @@ def flashcard():
     except Exception:
         return jsonify({"german": "Keine Daten", "english": "No data", "sentence": "Check german_words.txt format."})
 
+_german_word_pointer = 0
+
 @app.route('/api/german-screensaver')
 def german_screensaver():
+    global _german_word_pointer
     try:
         base_dir = os.path.dirname(os.path.abspath(__file__))
         file_path = os.path.join(base_dir, 'german_words.txt')
@@ -346,11 +437,15 @@ def german_screensaver():
             elif len(parts) == 2:
                 parsed.append({"german": parts[0], "english": parts[1], "sentence": ""})
 
-        # Sample up to 3 distinct words (or with replacement if fewer)
-        count = min(3, len(parsed))
-        selected = random.sample(parsed, count)
-        while len(selected) < 3 and len(parsed) > 0:
-            selected.append(random.choice(parsed))
+        total = len(parsed)
+        selected = []
+        # Select 3 sequential words from pointer so no word repeats in an iteration
+        for i in range(3):
+            idx = (_german_word_pointer + i) % total
+            selected.append(parsed[idx])
+
+        # Advance pointer by 3 for next cycle
+        _german_word_pointer = (_german_word_pointer + 3) % total
             
         return jsonify(selected)
     except Exception:
@@ -373,21 +468,21 @@ def dashboard_data():
         currency = "₹"
         movers = get_nifty_movers()
         news_badge = "Indian Markets"
-        news = get_rss("https://economictimes.indiatimes.com/markets/stocks/rssfeeds/2146842.cms", 6, "https://www.moneycontrol.com/rss/buzzingstocks.xml")
     elif 6 <= hour < 9:
         mode = "Morning Briefing"
         market_label = "Nifty 50 (Pre-Open)"
         currency = "₹"
         movers = get_nifty_movers()
         news_badge = "Morning Cues"
-        news = get_rss("https://economictimes.indiatimes.com/markets/stocks/rssfeeds/2146842.cms", 6, "https://www.moneycontrol.com/rss/buzzingstocks.xml")
     else:
         mode = "US Market Hours"
         market_label = "Nasdaq 100"
         currency = "$"
         movers = get_nasdaq_movers()
         news_badge = "US Markets"
-        news = get_rss("https://www.cnbc.com/id/10000664/device/rss/rss.html", 6, "https://news.google.com/rss/headlines/section/topic/BUSINESS")
+
+    # Fresh Real-Time Global & Local News (filtered for today with time tags)
+    news_pack = get_fresh_news(4)
 
     # Weather for Bareilly (always active)
     weather = get_bareilly_weather()
@@ -411,11 +506,15 @@ def dashboard_data():
             "gainers": movers.get("gainers", []),
             "losers": movers.get("losers", [])
         },
-        "news": news,
+        "news": news_pack.get("combined", []),
+        "news_global": news_pack.get("global", []),
+        "news_local": news_pack.get("local", []),
         "trends": trends,
         "breaking_india": breaking_india,
         "ticker": ticker
     }
+
+    return jsonify(payload)
 
     return jsonify(payload)
 

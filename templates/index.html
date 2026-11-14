@@ -390,41 +390,89 @@
         .chg-pos { background: rgba(16, 185, 129, 0.16); color: #10b981; }
         .chg-neg { background: rgba(244, 63, 94, 0.16); color: #f43f5e; }
 
-        /* ==================== VIEW 2: NEWS & BUZZ ==================== */
-        .news-panoramic {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px 16px;
+        /* ==================== VIEW 2: NEWS & BUZZ (SPLIT GLOBAL & LOCAL) ==================== */
+        .news-split-container {
+            display: flex;
+            gap: 16px;
+            flex: 1;
+            min-height: 0;
+        }
+        .news-col {
+            flex: 1;
+            background: #090c13;
+            border: 1px solid #1a2236;
+            border-radius: 10px;
+            padding: 12px 16px;
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+            overflow-y: auto;
+        }
+        .news-col-hdr {
+            font-size: 1.25rem; /* +20% larger for crystal clarity */
+            font-weight: 800;
+            padding-bottom: 8px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #1d273f;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+        .news-col-hdr.global { color: #38bdf8; }
+        .news-col-hdr.local { color: #fbbf24; }
+
+        .news-col-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
             flex: 1;
             overflow-y: auto;
-            align-content: start;
-            padding-right: 4px;
         }
-        .news-card {
+        .news-item-card {
             background: #0e121d;
-            border: 1px solid #1a2236;
-            border-left: 4px solid #3b82f6;
+            border: 1px solid #1c243a;
+            border-left: 4px solid #38bdf8;
             border-radius: 8px;
-            padding: 14px 16px;
-            font-size: 1.26rem; /* +20% larger for crystal clarity */
-            line-height: 1.45;
-            color: #e2e8f0;
+            padding: 12px 16px;
             display: flex;
-            align-items: flex-start;
-            gap: 12px;
+            flex-direction: column;
+            gap: 6px;
             transition: transform 0.2s ease, background 0.2s ease;
         }
-        .news-card:hover {
-            transform: translateY(-2px);
+        .news-item-card.local-item {
+            border-left-color: #fbbf24;
+        }
+        .news-item-card:hover {
+            transform: translateX(4px);
             background: #131929;
             border-color: #2a3756;
         }
-        .news-bullet {
-            color: #3b82f6;
-            font-size: 1.55rem;
-            line-height: 1;
-            flex-shrink: 0;
-            margin-top: 2px;
+        .news-item-title {
+            font-size: 1.18rem; /* +20% clear readability */
+            line-height: 1.42;
+            color: #f1f5f9;
+            font-weight: 600;
+        }
+        .news-item-meta {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.82rem;
+            color: #94a3b8;
+        }
+        .news-time-badge {
+            background: rgba(56, 189, 248, 0.16);
+            color: #38bdf8;
+            padding: 2px 7px;
+            border-radius: 4px;
+            font-weight: 800;
+            font-size: 0.76rem;
+            letter-spacing: 0.3px;
+        }
+        .news-item-card.local-item .news-time-badge {
+            background: rgba(251, 191, 36, 0.16);
+            color: #fbbf24;
         }
 
         /* ==================== VIEW 3: TRENDS & INDIA WIRE ==================== */
@@ -756,8 +804,9 @@
             .section-title { font-size: 1.1rem; }
             .stock-sym { font-size: 1rem; }
             .stock-chg { font-size: 0.92rem; padding: 2px 7px; }
-            .news-card { font-size: 1.15rem; padding: 11px 14px; } /* +21% for clarity on 1366x768 */
-            .news-bullet { font-size: 1.45rem; }
+            .news-col-hdr { font-size: 1.15rem; }
+            .news-item-card { padding: 9px 12px; gap: 4px; }
+            .news-item-title { font-size: 1.08rem; }
             .sub-header { font-size: 1.15rem; }
             .list-item { font-size: 1.06rem; padding: 8px 12px; } /* +20.5% for clarity on 1366x768 */
             .ticker-bar { padding: 9px 14px; margin-top: 6px; }
@@ -852,16 +901,25 @@
             </div>
         </div>
 
-        <!-- Slide 1: News & Buzz (Full-Width Dual-Column Grid) -->
+        <!-- Slide 1: News & Buzz (Global & Local Real-Time Breaking Feeds) -->
         <div class="carousel-slide" id="slide-1">
             <div class="full-section-card">
                 <div class="section-top-bar">
                     <h2 class="section-title">
-                        <span>📰 News &amp; Buzz</span>
-                        <span class="section-badge" id="news-mode-badge">Market News</span>
+                        <span>📰 News &amp; Buzz: Global &amp; India Live</span>
+                        <span class="section-badge" id="news-mode-badge">Real-Time</span>
                     </h2>
                 </div>
-                <div id="news-data" class="news-panoramic"></div>
+                <div class="news-split-container">
+                    <div class="news-col">
+                        <div class="news-col-hdr global">🌐 Global Business &amp; World Markets</div>
+                        <div id="news-global-data" class="news-col-list"></div>
+                    </div>
+                    <div class="news-col">
+                        <div class="news-col-hdr local">🇮🇳 India Business &amp; Top Stories</div>
+                        <div id="news-local-data" class="news-col-list"></div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -1018,8 +1076,8 @@
             }
         }
 
-        // ==================== 2-MINUTE SECTION CAROUSEL & PLAYBACK CONTROLS ====================
-        const ROTATION_INTERVAL_SECS = 120; // 2 minutes
+        // ==================== 45-SECOND SECTION CAROUSEL & PLAYBACK CONTROLS ====================
+        const ROTATION_INTERVAL_SECS = 45; // 45 seconds per section (Option B: 45s + 45s + 45s)
         let currentSection = 0;
         let secondsRemaining = ROTATION_INTERVAL_SECS;
         let isAnimationEnabled = true;
@@ -1052,7 +1110,7 @@
                 // Resume ticker animation
                 setTickerAnimationState(true);
                 
-                // Reset rotation timer to 2 minutes
+                // Reset rotation timer to 45 seconds
                 secondsRemaining = ROTATION_INTERVAL_SECS;
                 updateTimerDisplay();
             } else {
@@ -1414,21 +1472,33 @@
                         renderStockRows(data.primary_focus.losers, 'nasdaq-losers');
                     }
 
-                    // Section 2: News & Buzz (Dual-Column Cards)
-                    let newsHtml = '';
-                    if (data.news && data.news.length > 0) {
-                        data.news.forEach(n => {
-                            newsHtml += `
-                                <div class="news-card">
-                                    <span class="news-bullet">▪</span>
-                                    <span>${n.title}</span>
+                    // Section 2: News & Buzz (Global & India Feeds with Live Freshness Tags)
+                    const renderNewsCards = (items, fallbackText, isLocal) => {
+                        if (!items || items.length === 0) {
+                            return `<div style="color:#64748b; padding:10px;">${fallbackText}</div>`;
+                        }
+                        return items.map(n => `
+                            <div class="news-item-card ${isLocal ? 'local-item' : ''}">
+                                <div class="news-item-title">${n.title}</div>
+                                <div class="news-item-meta">
+                                    <span class="news-time-badge">${n.time_tag || 'Live'}</span>
+                                    <span>${n.source || (isLocal ? 'India Wire' : 'Global Wire')}</span>
                                 </div>
-                            `;
-                        });
-                    } else {
-                        newsHtml = '<div style="color:#64748b; padding:10px;">Loading news...</div>';
-                    }
-                    document.getElementById('news-data').innerHTML = newsHtml;
+                            </div>
+                        `).join('');
+                    };
+
+                    const globalNews = (data.news_global && data.news_global.length > 0) 
+                        ? data.news_global 
+                        : (data.news ? data.news.slice(0, 3) : []);
+                    const localNews = (data.news_local && data.news_local.length > 0) 
+                        ? data.news_local 
+                        : (data.news ? data.news.slice(3, 6) : []);
+
+                    const globalEl = document.getElementById('news-global-data');
+                    if (globalEl) globalEl.innerHTML = renderNewsCards(globalNews, 'Loading fresh global wire...', false);
+                    const localEl = document.getElementById('news-local-data');
+                    if (localEl) localEl.innerHTML = renderNewsCards(localNews, 'Loading fresh India wire...', true);
 
                     // Section 3: Viral Trends & Breaking News (India)
                     let trendsHtml = '';
