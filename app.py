@@ -409,8 +409,11 @@ def flashcard():
             lines = [line.strip() for line in f.readlines() if '|' in line]
         if not lines:
             raise ValueError
-        word = random.choice(lines).split('|')
-        return jsonify({"german": word[0].strip(), "english": word[1].strip(), "sentence": word[2].strip()})
+        parts = [p.strip() for p in random.choice(lines).split('|')]
+        german = parts[0] if len(parts) >= 1 else "Keine Daten"
+        english = parts[1] if len(parts) >= 2 else ""
+        sentence = parts[2] if len(parts) >= 3 else ""
+        return jsonify({"german": german, "english": english, "sentence": sentence})
     except Exception:
         return jsonify({"german": "Keine Daten", "english": "No data", "sentence": "Check german_words.txt format."})
 

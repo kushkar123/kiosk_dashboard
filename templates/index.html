@@ -986,7 +986,11 @@
                 .then(data => {
                     document.getElementById('ger-word').innerText = data.german;
                     document.getElementById('ger-eng').innerText = data.english;
-                    document.getElementById('ger-sent').innerText = data.sentence;
+                    const sentEl = document.getElementById('ger-sent');
+                    if (sentEl) {
+                        sentEl.innerText = data.sentence || '';
+                        sentEl.style.display = data.sentence ? 'block' : 'none';
+                    }
                 })
                 .catch(() => {});
         }
@@ -1307,11 +1311,12 @@
             words.slice(0, 3).forEach((item, index) => {
                 const cardEl = document.createElement('div');
                 cardEl.className = `screensaver-card card-${index}`;
+                const sentenceHtml = (item.sentence && item.sentence.trim()) ? `<div class="card-sentence">"${item.sentence}"</div>` : '';
                 cardEl.innerHTML = `
                     <div class="card-word-badge">Wort des Tages • #${index + 1}</div>
                     <div class="card-german">${item.german}</div>
                     <div class="card-english">${item.english}</div>
-                    <div class="card-sentence">"${item.sentence}"</div>
+                    ${sentenceHtml}
                 `;
 
                 // Initial drop animation

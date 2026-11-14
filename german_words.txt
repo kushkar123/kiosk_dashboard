@@ -1,26 +1,46 @@
-durch | through | Wir gehen durch den Park.
-wollen | to want | Ich will nach Hause gehen.
-gar | at all | Das ist gar nicht so einfach.
-wie | how | Wie heißt du?
-um | at | Das Treffen beginnt um acht Uhr.
-müssen | must | Wir müssen für die Prüfung lernen.
-über | about | Wir sprechen über den neuen Film.
-geben | to give | Kannst du mir bitte das Buch geben?
-wieso | how come | Wieso bist du heute so spät?
-ohne | without | Ich trinke meinen Kaffee ohne Zucker.
-werden | to become | Er wird bald Arzt.
-von | from / of | Das Geschenk ist von meiner Mutter.
-dürfen | to be allowed | Hier darf man nicht parken.
-nach | to | Ich fahre nach Berlin.
-bleiben | to stay | Wir bleiben heute zu Hause.
-wohin | to where | Wohin gehst du am Wochenende?
-vor | in front | Das Auto steht vor dem Haus.
-lassen | to leave | Lass deine Schuhe an der Tür.
-aus | from | Sie kommt aus der Schweiz.
-sollen | should | Du sollst mehr Wasser trinken.
-tun | to do | Was kann ich für dich tun?
-bis | to (until) | Wir haben bis morgen Zeit.
-bei | at | Er arbeitet bei einer großen Firma.
-mögen | to like | Ich mag Schokolade sehr.
-woher | from where | Woher kommst du?
-ab | from | Ab Montag mache ich Sport.
+hören (v) | to hear
+sollen (v) | should
+wollen (v) | to want
+zeigen (v) | to show
+aus (prep/other) | from
+hoffen (v) | to hope
+von (prep/other) | from / of
+stehen (v) | to stand
+fragen (v) | to ask
+woher (qw) | from where
+tun (v) | to do
+sterben (v) | to die
+nach (prep/other) | to
+stimmen (v) | to be right
+ohne (prep/other) | without
+bleiben (v) | to stay
+passieren (v) | to happen
+bis (prep/other) | to (until)
+sorgen (v) | to worry
+wie (qw) | how
+werden (v) | to become
+glauben (v) | to believe
+lassen (v) | to leave
+heißen (v) | to be called
+über (prep/other) | about
+holen (v) | to fetch
+wieso (qw) | how come
+müssen (v) | must
+gar (prep/other) | at all
+reden (v) | to talk
+mögen (v) | to like
+durch (prep/other) | through
+suchen (v) | to search
+ab (prep/other) | from
+töten (v) | to kill
+dürfen (v) | to be allowed
+um (prep/other) | at
+nehmen (v) | to take
+gefallen (v) | to please
+bei (prep/other) | at
+vor (prep/other) | in front
+wohin (qw) | to where
+geben (v) | to give
+vergessen (v) | to forget
+versuchen (v) | to try
+schauen (v) | to look
