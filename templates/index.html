@@ -790,6 +790,166 @@
             100% { transform: translate3d(0, 0, 0); }
         }
 
+        /* ==================== 4-MINUTE TOPICS DIGEST OVERLAY (90% SCREEN COVERAGE) ==================== */
+        .topics-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: radial-gradient(ellipse at 50% 20%, #0d121f 0%, #04070d 100%);
+            z-index: 999999;
+            display: none;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.7s ease;
+            overflow: hidden;
+            user-select: none;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 18px 36px;
+            box-sizing: border-box;
+        }
+        .topics-overlay.active {
+            display: flex;
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .topics-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-shrink: 0;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .topics-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.95rem;
+            font-weight: 800;
+            letter-spacing: 1.2px;
+            color: #60a5fa;
+            text-transform: uppercase;
+            background: rgba(15, 23, 42, 0.75);
+            border: 1px solid rgba(59, 130, 246, 0.25);
+            padding: 6px 16px;
+            border-radius: 20px;
+            backdrop-filter: blur(8px);
+        }
+        .topics-meta {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        .topics-counter-badge {
+            color: #cbd5e1;
+            font-size: 0.88rem;
+            font-weight: 700;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 5px 12px;
+            border-radius: 16px;
+        }
+        .topics-countdown {
+            color: #fbbf24;
+            font-family: monospace;
+            font-size: 1.12rem;
+            font-weight: 800;
+            background: rgba(251, 191, 36, 0.12);
+            border: 1px solid rgba(251, 191, 36, 0.3);
+            padding: 4px 12px;
+            border-radius: 16px;
+        }
+        .topics-exit-btn {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #94a3b8;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            backdrop-filter: blur(8px);
+        }
+        .topics-exit-btn:hover {
+            background: rgba(255, 255, 255, 0.12);
+            color: #ffffff;
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* 90% Screen Coverage Stage */
+        .topics-stage {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            flex: 1;
+            justify-content: center;
+            margin: 12px 0;
+            min-height: 0;
+        }
+        .topic-large-card {
+            flex: 1;
+            background: linear-gradient(135deg, rgba(17, 24, 39, 0.94), rgba(10, 15, 25, 0.97));
+            border-radius: 14px;
+            padding: 22px 32px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-left: 6px solid #fbbf24;
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.6);
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+            min-height: 0;
+            overflow: hidden;
+        }
+        .topic-large-card.card-alt {
+            border-left-color: #34d399;
+        }
+        .topic-tag-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 6px;
+        }
+        .topic-num-pill {
+            display: inline-block;
+            font-size: 0.74rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 3px 10px;
+            border-radius: 6px;
+            background: rgba(251, 191, 36, 0.15);
+            color: #fbbf24;
+        }
+        .topic-large-card.card-alt .topic-num-pill {
+            background: rgba(52, 211, 153, 0.15);
+            color: #34d399;
+        }
+        .topic-headline {
+            font-size: 2.05rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin: 4px 0 10px 0;
+            line-height: 1.25;
+            letter-spacing: -0.4px;
+        }
+        .topic-large-card.card-alt .topic-headline {
+            color: #f8fafc;
+        }
+        .topic-summary-text {
+            font-size: 1.45rem;
+            font-weight: 500;
+            line-height: 1.55;
+            color: #cbd5e1;
+            letter-spacing: 0.2px;
+            margin: 0;
+        }
+
         /* 1366x768 Responsive Tweaks */
         @media (max-width: 1400px), (max-height: 800px) {
             body { padding: 8px 14px; }
@@ -813,6 +973,12 @@
             .ticker-name { font-size: 0.9rem; }
             .ticker-val { font-size: 1.06rem; }
             .ticker-badge { font-size: 0.88rem; }
+
+            .topics-overlay { padding: 12px 24px; }
+            .topics-stage { gap: 14px; margin: 8px 0; }
+            .topic-large-card { padding: 16px 24px; }
+            .topic-headline { font-size: 1.7rem; margin: 2px 0 6px 0; line-height: 1.2; }
+            .topic-summary-text { font-size: 1.28rem; line-height: 1.45; }
         }
     </style>
 </head>
@@ -969,13 +1135,33 @@
                 <span class="screensaver-sep">•</span>
                 <span id="screensaver-countdown">05:00</span>
             </div>
-            <button class="screensaver-exit-btn" onclick="exitScreensaver()" title="Return to Dashboard">
+            <button class="screensaver-exit-btn" onclick="exitScreensaver(true)" title="Return to Dashboard">
                 ✕ Return to Dashboard
             </button>
         </div>
 
         <!-- 3 Floating & Colliding Vocabulary Cards -->
         <div id="screensaver-cards-container" class="screensaver-cards-stage"></div>
+    </div>
+
+    <!-- Full-Screen 4-Minute Topics Digest Overlay (Shows 2 topics covering 90% of screen) -->
+    <div id="topics-digest-overlay" class="topics-overlay">
+        <div class="topics-header">
+            <div class="topics-brand">
+                <span>📚 Current Affairs &amp; Special Topics</span>
+            </div>
+            <div class="topics-meta">
+                <span class="topics-counter-badge" id="topics-counter-badge">Topics #1 &amp; #2 of 116</span>
+                <span class="topics-countdown" id="topics-countdown">04:00</span>
+                <button class="topics-exit-btn" onclick="exitTopicsDigest(true)" title="Return to Dashboard">
+                    ✕ Return to Dashboard
+                </button>
+            </div>
+        </div>
+
+        <div class="topics-stage" id="topics-stage-container">
+            <!-- 2 Large Cards Injected Dynamically -->
+        </div>
     </div>
 
     <script>
@@ -1120,7 +1306,10 @@
             } else {
                 // Animation stopped
                 if (isScreensaverActive) {
-                    exitScreensaver();
+                    exitScreensaver(true);
+                }
+                if (isTopicsDigestActive) {
+                    exitTopicsDigest(true);
                 }
 
                 btn.classList.add('paused');
@@ -1187,7 +1376,7 @@
         // Second-by-second timer tick for 2-Minute Section Rotation
         setInterval(() => {
             if (!isAnimationEnabled) return;
-            if (isScreensaverActive) return; // Do not tick carousel when screensaver is roaming!
+            if (isScreensaverActive || isTopicsDigestActive) return; // Do not tick carousel when screensaver or topics digest is active!
             
             secondsRemaining--;
             if (secondsRemaining <= 0) {
@@ -1254,7 +1443,7 @@
             if (el) el.innerText = `${mins < 10 ? '0' : ''}${mins}:${secs < 10 ? '0' : ''}${secs}`;
         }
 
-        function exitScreensaver() {
+        function exitScreensaver(manualDismiss = false) {
             if (!isScreensaverActive) return;
             isScreensaverActive = false;
 
@@ -1270,12 +1459,117 @@
             const overlay = document.getElementById('german-screensaver');
             overlay.classList.remove('active');
 
+            if (manualDismiss || !isAnimationEnabled) {
+                // Resume bottom ticker if playback is enabled
+                if (isAnimationEnabled) {
+                    setTickerAnimationState(true);
+                }
+                // Return to Slide 0 (Primary Focus)
+                switchSection(0);
+                return;
+            }
+
+            // After German vocabulary naturally finishes 5 minutes, transition to 4-minute Topic Digest page
+            startTopicsDigest(240);
+        }
+
+        // ==================== 4-MINUTE TOPICS DIGEST ENGINE ====================
+        let isTopicsDigestActive = false;
+        let topicsDigestRemaining = 240; // 4 minutes
+        let topicsDigestTimerInterval = null;
+
+        function startTopicsDigest(durationSecs = 240) {
+            isTopicsDigestActive = true;
+            topicsDigestRemaining = durationSecs;
+
+            const overlay = document.getElementById('topics-digest-overlay');
+            if (overlay) overlay.classList.add('active');
+
+            // Pause ticker animation during topic digest
+            setTickerAnimationState(false);
+
+            // Fetch the next 2 sequential topics
+            fetch('/api/topics')
+                .then(r => r.json())
+                .then(data => {
+                    renderTopicsDigest(data);
+                })
+                .catch(() => {
+                    const fallback = {
+                        topics: [
+                            {"id": 1, "topic": "The Musical Instrument Mandar", "summary": "Traditional tribal percussion instrument of Jharkhand, made of clay or wood, used in festivals to preserve cultural heritage."},
+                            {"id": 2, "topic": "The Sengol", "summary": "A historical silver scepter symbolizing the transfer of power, recently installed in India's new Parliament building as a cultural emblem."}
+                        ],
+                        total: 116
+                    };
+                    renderTopicsDigest(fallback);
+                });
+
+            updateTopicsCountdown();
+
+            if (topicsDigestTimerInterval) clearInterval(topicsDigestTimerInterval);
+            topicsDigestTimerInterval = setInterval(() => {
+                topicsDigestRemaining--;
+                updateTopicsCountdown();
+                if (topicsDigestRemaining <= 0) {
+                    exitTopicsDigest(false);
+                }
+            }, 1000);
+        }
+
+        function updateTopicsCountdown() {
+            const mins = Math.floor(topicsDigestRemaining / 60);
+            const secs = topicsDigestRemaining % 60;
+            const el = document.getElementById('topics-countdown');
+            if (el) el.innerText = `${mins < 10 ? '0' : ''}${mins}:${secs < 10 ? '0' : ''}${secs}`;
+        }
+
+        function renderTopicsDigest(data) {
+            const container = document.getElementById('topics-stage-container');
+            const counterBadge = document.getElementById('topics-counter-badge');
+            if (!container) return;
+
+            const topics = data.topics || [];
+            const total = data.total || 116;
+
+            if (counterBadge && topics.length >= 2) {
+                counterBadge.innerText = `Topics #${topics[0].id} & #${topics[1].id} of ${total}`;
+            }
+
+            let html = '';
+            topics.forEach((t, idx) => {
+                const isAlt = (idx % 2 === 1) ? 'card-alt' : '';
+                html += `
+                    <div class="topic-large-card ${isAlt}">
+                        <div class="topic-tag-row">
+                            <span class="topic-num-pill">Topic #${t.id}</span>
+                        </div>
+                        <h2 class="topic-headline">${t.topic}</h2>
+                        <p class="topic-summary-text">${t.summary}</p>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+        }
+
+        function exitTopicsDigest(manualDismiss = false) {
+            if (!isTopicsDigestActive) return;
+            isTopicsDigestActive = false;
+
+            if (topicsDigestTimerInterval) {
+                clearInterval(topicsDigestTimerInterval);
+                topicsDigestTimerInterval = null;
+            }
+
+            const overlay = document.getElementById('topics-digest-overlay');
+            if (overlay) overlay.classList.remove('active');
+
             // Resume bottom ticker if playback is enabled
             if (isAnimationEnabled) {
                 setTickerAnimationState(true);
             }
 
-            // Return to Slide 0 (Primary Focus) and start next cycle
+            // Return to Slide 0 (Primary Focus) and begin the next cycle
             switchSection(0);
         }
 
@@ -1440,10 +1734,11 @@
             screensaverPhysicsAnimFrame = requestAnimationFrame(runScreensaverPhysics);
         }
 
-        // Global key listener to dismiss screensaver on Escape
+        // Global key listener to dismiss screensaver or topic digest on Escape
         window.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && isScreensaverActive) {
-                exitScreensaver();
+            if (e.key === 'Escape') {
+                if (isScreensaverActive) exitScreensaver(true);
+                if (isTopicsDigestActive) exitTopicsDigest(true);
             }
         });
 

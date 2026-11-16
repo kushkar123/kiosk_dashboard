@@ -1,5 +1,6 @@
 import os
 import re
+import json
 import random
 import time
 from datetime import datetime
@@ -459,6 +460,61 @@ def german_screensaver():
         ]
         return jsonify(fallback)
 
+_topic_pointer = 0
+
+@app.route('/api/topics')
+def get_topics():
+    global _topic_pointer
+    try:
+        base_dir = os.path.dirname(os.path.abspath(__file__))
+        json_path = os.path.join(base_dir, 'topics.json')
+        items = []
+        if os.path.exists(json_path):
+            with open(json_path, 'r', encoding='utf-8') as f:
+                items = json.load(f)
+        else:
+            txt_path = os.path.join(base_dir, 'topics.txt')
+            with open(txt_path, 'r', encoding='utf-8') as f:
+                for line in f:
+                    if '|' in line:
+                        p = line.split('|')
+                        topic = p[0].strip()
+                        summary = p[1].strip()
+                        clean_topic = topic
+                        if '.' in topic[:5]:
+                            num_part, rest = topic.split('.', 1)
+                            if num_part.isdigit():
+                                clean_topic = rest.strip()
+                        items.append({
+                            "id": len(items) + 1,
+                            "topic": clean_topic,
+                            "summary": summary
+                        })
+
+        total = len(items)
+        if total == 0:
+            raise ValueError
+
+        selected = []
+        for i in range(2):
+            idx = (_topic_pointer + i) % total
+            selected.append(items[idx])
+
+        # Advance pointer by 2 for next cycle
+        _topic_pointer = (_topic_pointer + 2) % total
+
+        return jsonify({
+            "topics": selected,
+            "next_pointer": _topic_pointer,
+            "total": total
+        })
+    except Exception:
+        fallback = [
+            {"id": 1, "topic": "The Musical Instrument Mandar", "summary": "Traditional tribal percussion instrument of Jharkhand, made of clay or wood, used in festivals to preserve cultural heritage."},
+            {"id": 2, "topic": "The Sengol", "summary": "A historical silver scepter symbolizing the transfer of power, recently installed in India's new Parliament building as a cultural emblem."}
+        ]
+        return jsonify({"topics": fallback, "total": 116})
+
 @app.route('/api/data')
 def dashboard_data():
     now = datetime.now(IST)
@@ -516,8 +572,6 @@ def dashboard_data():
         "breaking_india": breaking_india,
         "ticker": ticker
     }
-
-    return jsonify(payload)
 
     return jsonify(payload)
 

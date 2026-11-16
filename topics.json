@@ -1,0 +1,698 @@
+[
+  {
+    "id": 1,
+    "raw_topic": "1. The Musical Instrument Mandar",
+    "topic": "The Musical Instrument Mandar",
+    "summary": "Traditional tribal percussion instrument of Jharkhand, made of clay or wood, used in festivals to preserve cultural heritage."
+  },
+  {
+    "id": 2,
+    "raw_topic": "2. The Sengol",
+    "topic": "The Sengol",
+    "summary": "A historical silver scepter symbolizing the transfer of power, recently installed in India's new Parliament building as a cultural emblem."
+  },
+  {
+    "id": 3,
+    "raw_topic": "3. The Ramappa Temple",
+    "topic": "The Ramappa Temple",
+    "summary": "A UNESCO World Heritage site in Telangana, renowned for its intricate Kakatiya architecture, floating bricks, and star-shaped foundation."
+  },
+  {
+    "id": 4,
+    "raw_topic": "4. Khajuraho's Javari Temple",
+    "topic": "Khajuraho's Javari Temple",
+    "summary": "An elegant Hindu temple in Madhya Pradesh, celebrated for its intricate stone carvings, detailed sculptures, and classic Nagara architecture."
+  },
+  {
+    "id": 5,
+    "raw_topic": "5. The Hornbill Festival",
+    "topic": "The Hornbill Festival",
+    "summary": "Nagaland's premier cultural festival celebrating the rich heritage of indigenous Naga tribes through vibrant traditional music, dance, and crafts."
+  },
+  {
+    "id": 6,
+    "raw_topic": "6. Basawan: Mughal Painter",
+    "topic": "Basawan: Mughal Painter",
+    "summary": "A master miniature painter during Akbar's reign, known for pioneering realistic portraiture and complex compositions in Mughal art."
+  },
+  {
+    "id": 7,
+    "raw_topic": "7. 3 New Addition to The UNESCO World Heritage Tentative List",
+    "topic": "3 New Addition to The UNESCO World Heritage Tentative List",
+    "summary": "India recently added new cultural and natural sites to the UNESCO tentative list to seek global recognition and protection."
+  },
+  {
+    "id": 8,
+    "raw_topic": "8. Khajuraho's Medieval Temples",
+    "topic": "Khajuraho's Medieval Temples",
+    "summary": "Magnificent UNESCO-listed Hindu and Jain temples famous for their Nagara-style architectural symbolism and intricate, expressive erotic stone sculptures."
+  },
+  {
+    "id": 9,
+    "raw_topic": "9. Lal Bahadur Shastri",
+    "topic": "Lal Bahadur Shastri",
+    "summary": "India's second Prime Minister, remembered for promoting the White and Green Revolutions and his unifying \"Jai Jawan Jai Kisan\" slogan."
+  },
+  {
+    "id": 10,
+    "raw_topic": "10. Typhoon Dujuan",
+    "topic": "Typhoon Dujuan",
+    "summary": "A powerful tropical cyclone that impacted East Asia, bringing severe winds, heavy rainfall, and significant regional coastal flooding."
+  },
+  {
+    "id": 11,
+    "raw_topic": "11. Kallakkadal (Swell Surge)",
+    "topic": "Kallakkadal (Swell Surge)",
+    "summary": "Sudden coastal flooding events caused by distant ocean swells, severely impacting India's southwestern coastal communities, livelihoods, and infrastructure."
+  },
+  {
+    "id": 12,
+    "raw_topic": "12. Government Approves Five Centres of Excellence in Classical Languages",
+    "topic": "Government Approves Five Centres of Excellence in Classical Languages",
+    "summary": "An initiative establishing specialized research centers to document, preserve, and promote the rich heritage of India's recognized classical languages."
+  },
+  {
+    "id": 13,
+    "raw_topic": "13. The Collegium System",
+    "topic": "The Collegium System",
+    "summary": "An extraconstitutional mechanism developed through judicial pronouncements for appointing and transferring judges to the Supreme Court and High Courts."
+  },
+  {
+    "id": 14,
+    "raw_topic": "14. ECI's Electoral Roll Management Systems",
+    "topic": "ECI's Electoral Roll Management Systems",
+    "summary": "A unified digital platform (ECINET) consolidating election services and using algorithms to detect logical discrepancies in national electoral rolls."
+  },
+  {
+    "id": 15,
+    "raw_topic": "15. The Inter-Parliamentary Union (IPU)",
+    "topic": "The Inter-Parliamentary Union (IPU)",
+    "summary": "A global organization of national parliaments established in 1889 to promote democratic governance, parliamentary diplomacy, and international human rights."
+  },
+  {
+    "id": 16,
+    "raw_topic": "16. BNSS Section 163",
+    "topic": "BNSS Section 163",
+    "summary": "A statutory provision replacing Section 144 CrPC, empowering magistrates to issue preventive orders against urgent public order and safety threats."
+  },
+  {
+    "id": 17,
+    "raw_topic": "17. The GST Council",
+    "topic": "The GST Council",
+    "summary": "A joint constitutional forum of the Centre and States making recommendations on GST rates, rules, exemption thresholds, and dispute resolution."
+  },
+  {
+    "id": 18,
+    "raw_topic": "18. Election Commission of India: Evolution and Constitutional Powers",
+    "topic": "Election Commission of India: Evolution and Constitutional Powers",
+    "summary": "A permanent constitutional body established under Article 324, overseeing national elections and advising on the disqualifications of political members."
+  },
+  {
+    "id": 19,
+    "raw_topic": "19. The Appointment of Deputy Election Commissioners in ECI",
+    "topic": "The Appointment of Deputy Election Commissioners in ECI",
+    "summary": "Senior civil servants appointed through the Central Staffing Scheme to assist the ECI in critical functional and administrative divisions."
+  },
+  {
+    "id": 20,
+    "raw_topic": "20. The National Human Rights Commission (NHRC)",
+    "topic": "The National Human Rights Commission (NHRC)",
+    "summary": "A statutory, quasi-judicial body established in 1993 to protect human rights, investigate violations, and monitor conditions in detention facilities."
+  },
+  {
+    "id": 21,
+    "raw_topic": "21. The Appointment of Governors",
+    "topic": "The Appointment of Governors",
+    "summary": "The constitutional head of a State, appointed by the President, exercising crucial executive, legislative, and specific discretionary political powers."
+  },
+  {
+    "id": 22,
+    "raw_topic": "22. Preventive Detention",
+    "topic": "Preventive Detention",
+    "summary": "Confinement without a criminal trial to prevent anticipated threats to national security or public order, subject to strict constitutional safeguards."
+  },
+  {
+    "id": 23,
+    "raw_topic": "23. Overseas Citizenship of India (OCI)",
+    "topic": "Overseas Citizenship of India (OCI)",
+    "summary": "A special immigration status for foreign nationals of Indian origin, granting a lifelong multiple-entry visa but lacking fundamental political rights."
+  },
+  {
+    "id": 24,
+    "raw_topic": "24. The National Strategic Trade Command Centre (NSTCC)",
+    "topic": "The National Strategic Trade Command Centre (NSTCC)",
+    "summary": "A centralized analytics hub by the Department of Commerce for real-time monitoring and evidence-based governance of international foreign trade."
+  },
+  {
+    "id": 25,
+    "raw_topic": "25. The Special Summary Revision (SSR)",
+    "topic": "The Special Summary Revision (SSR)",
+    "summary": "An annual administrative exercise to update the electoral roll by enrolling new voters, updating residential shifts, and deleting invalid entries."
+  },
+  {
+    "id": 26,
+    "raw_topic": "26. MLC Elections",
+    "topic": "MLC Elections",
+    "summary": "Indirect, quota-based elections to elect members to the upper house of bicameral state legislatures using a proportional representation voting system."
+  },
+  {
+    "id": 27,
+    "raw_topic": "27. The Armed Forces (Special Powers) Act, 1958 (AFSPA)",
+    "topic": "The Armed Forces (Special Powers) Act, 1958 (AFSPA)",
+    "summary": "A parliamentary statute conferring extraordinary operational powers and legal immunity to armed forces in designated disturbed internal security areas."
+  },
+  {
+    "id": 28,
+    "raw_topic": "28. The Transplantation of Human Organs and Tissues Act (THOTA), 1994",
+    "topic": "The Transplantation of Human Organs and Tissues Act (THOTA), 1994",
+    "summary": "Legislation governing organ transplantation to ensure ethical donation, equitable allocation, and the strict prohibition of commercial human organ trafficking."
+  },
+  {
+    "id": 29,
+    "raw_topic": "29. The PRAGATI-50 Initiative",
+    "topic": "The PRAGATI-50 Initiative",
+    "summary": "A targeted urban transformation program under SBM-U 2.0 developing 50 model cities with high sanitation, circular economy, and waste standards."
+  },
+  {
+    "id": 30,
+    "raw_topic": "30. The Green Energy Corridor Phase-III Scheme",
+    "topic": "The Green Energy Corridor Phase-III Scheme",
+    "summary": "A flagship central infrastructure scheme to modernize power transmission grids and integrate intermittent renewable energy using battery energy storage."
+  },
+  {
+    "id": 31,
+    "raw_topic": "31. The National Coastal Mission (NCM 2.0)",
+    "topic": "The National Coastal Mission (NCM 2.0)",
+    "summary": "A comprehensive scheme establishing an integrated ecological governance framework to protect fragile coastal ecosystems and promote a sustainable Blue Economy."
+  },
+  {
+    "id": 32,
+    "raw_topic": "32. Remission of Duties and Taxes on Exported Products (RoDTEP) Scheme",
+    "topic": "Remission of Duties and Taxes on Exported Products (RoDTEP) Scheme",
+    "summary": "A WTO-compliant export promotion scheme refunding embedded domestic taxes to enhance the global cost competitiveness of Indian manufactured goods."
+  },
+  {
+    "id": 33,
+    "raw_topic": "33. The GOBARdhan Scheme",
+    "topic": "The GOBARdhan Scheme",
+    "summary": "An integrated scheme providing capital subsidies and predictable pricing to scale commercial Compressed Biogas production from organic agricultural waste."
+  },
+  {
+    "id": 34,
+    "raw_topic": "34. Ministry of Rural Development Notifies 375 Permissible Works under VB-G...",
+    "topic": "Ministry of Rural Development Notifies 375 Permissible Works under VB-G...",
+    "summary": "Expansion of rural public works to create durable, climate-resilient community infrastructure and enhance individual agrarian household livelihoods and productivity."
+  },
+  {
+    "id": 35,
+    "raw_topic": "35. The JOSH initiative",
+    "topic": "The JOSH initiative",
+    "summary": "A grassroots, youth-led community health outreach deploying multi-member volunteer squads to mobilize public participation in eliminating tuberculosis across India."
+  },
+  {
+    "id": 36,
+    "raw_topic": "36. PM Dhan-Dhaanya Krishi Yojana (PMDDKY)",
+    "topic": "PM Dhan-Dhaanya Krishi Yojana (PMDDKY)",
+    "summary": "A district-centric mission transforming backward agricultural pockets by improving farm productivity, expanding irrigation, and upgrading post-harvest infrastructure and credit."
+  },
+  {
+    "id": 37,
+    "raw_topic": "37. Lakshadweep Achieves 100% Literacy Under ULLAS Scheme",
+    "topic": "Lakshadweep Achieves 100% Literacy Under ULLAS Scheme",
+    "summary": "A centrally sponsored scheme successfully providing functional literacy, basic education, and critical life skills to non-literate citizens aged 15+."
+  },
+  {
+    "id": 38,
+    "raw_topic": "38. The Pradhan Mantri Samajik Sahayata Yojana",
+    "topic": "The Pradhan Mantri Samajik Sahayata Yojana",
+    "summary": "A welfare program providing non-contributory monthly pensions to vulnerable elderly individuals, widows, and persons with benchmark disabilities living below poverty."
+  },
+  {
+    "id": 39,
+    "raw_topic": "39. The PM-SETU Scheme",
+    "topic": "The PM-SETU Scheme",
+    "summary": "A national vocational initiative upgrading 1,000 Government ITIs into high-tech, industry-aligned training institutions using a collaborative Hub-and-Spoke cluster model."
+  },
+  {
+    "id": 40,
+    "raw_topic": "40. Kaliningrad",
+    "topic": "Kaliningrad",
+    "summary": "A heavily fortified Russian exclave situated on the Baltic Sea, physically separated from mainland Russia by neighboring NATO member states."
+  },
+  {
+    "id": 41,
+    "raw_topic": "41. US Suspends Green Card Filings by Major Indian IT Firms",
+    "topic": "US Suspends Green Card Filings by Major Indian IT Firms",
+    "summary": "The US suspended major IT firms from the PERM program over alleged immigration fraud and the displacement of domestic American workers."
+  },
+  {
+    "id": 42,
+    "raw_topic": "42. First BIMSTEC Home Ministers' Meeting: Delhi Declaration 2026",
+    "topic": "First BIMSTEC Home Ministers' Meeting: Delhi Declaration 2026",
+    "summary": "Regional security cooperation agreement among Bay of Bengal nations focusing heavily on counter-terrorism, cyber fraud, and preventing human trafficking."
+  },
+  {
+    "id": 43,
+    "raw_topic": "43. The Southern Indian Ocean Fisheries Agreement (SIOFA)",
+    "topic": "The Southern Indian Ocean Fisheries Agreement (SIOFA)",
+    "summary": "A multilateral regional agreement and RFMO focused on the conservation and sustainable management of non-tuna deep-sea fishery resources in high seas."
+  },
+  {
+    "id": 44,
+    "raw_topic": "44. The Badr Memorandum of Understanding (MoU)",
+    "topic": "The Badr Memorandum of Understanding (MoU)",
+    "summary": "A quadrilateral defense-industrial partnership between Pakistan, Turkey, Qatar, and Indonesia focusing on joint weapons production and advanced technology sharing."
+  },
+  {
+    "id": 45,
+    "raw_topic": "45. The International Whaling Commission (IWC)",
+    "topic": "The International Whaling Commission (IWC)",
+    "summary": "The premier global intergovernmental organization dedicated to the conservation of cetaceans, marine biodiversity, and the strict regulation of whaling activities."
+  },
+  {
+    "id": 46,
+    "raw_topic": "46. Andhra Pradesh to Pilot India's First 3D-Printed Rural Houses under...",
+    "topic": "Andhra Pradesh to Pilot India's First 3D-Printed Rural Houses under...",
+    "summary": "A pilot project using automated 3D Concrete Printing technology to rapidly construct durable, disaster-resilient rural homes under the PMAY-G scheme."
+  },
+  {
+    "id": 47,
+    "raw_topic": "47. The First Female Farmer Worker Conference",
+    "topic": "The First Female Farmer Worker Conference",
+    "summary": "A national convention recognizing women's agrarian contributions, advocating for official land rights, institutional credit, and promoting sustainable ecological farming models."
+  },
+  {
+    "id": 48,
+    "raw_topic": "48. The SME Growth Fund (SGF)",
+    "topic": "The SME Growth Fund (SGF)",
+    "summary": "A government-backed alternative investment fund providing patient, risk-bearing growth equity to high-potential small and medium manufacturing enterprises across tier-II clusters."
+  },
+  {
+    "id": 49,
+    "raw_topic": "49. The Integrated Transport and Logistics Authority (ITLA)",
+    "topic": "The Integrated Transport and Logistics Authority (ITLA)",
+    "summary": "An apex institution for integrated, multimodal transport planning, utilizing big-data analytics to eliminate inter-ministerial silos and reduce national logistics costs."
+  },
+  {
+    "id": 50,
+    "raw_topic": "50. The Index of Core Industries (ICI)",
+    "topic": "The Index of Core Industries (ICI)",
+    "summary": "A monthly production volume index measuring the collective performance of nine foundational infrastructure sectors, serving as a vital advance economic indicator."
+  },
+  {
+    "id": 51,
+    "raw_topic": "51. Analogue Paneer",
+    "topic": "Analogue Paneer",
+    "summary": "An imitation food product replacing natural dairy milk fat and proteins with vegetable oils, starches, and plant proteins to reduce costs."
+  },
+  {
+    "id": 52,
+    "raw_topic": "52. India's First Port-Based e-Methanol Production Facility",
+    "topic": "India's First Port-Based e-Methanol Production Facility",
+    "summary": "A port-integrated plant in Gujarat synthesizing green hydrogen and captured biogenic CO2 to produce carbon-neutral marine fuel for international shipping."
+  },
+  {
+    "id": 53,
+    "raw_topic": "53. India's First LNG-Powered Train",
+    "topic": "India's First LNG-Powered Train",
+    "summary": "A retrofitted dual-fuel passenger train utilizing cryogenic Liquefied Natural Gas to significantly reduce diesel consumption and curb greenhouse gas emissions."
+  },
+  {
+    "id": 54,
+    "raw_topic": "54. The Intelligent Traffic Management System (ITMS)",
+    "topic": "The Intelligent Traffic Management System (ITMS)",
+    "summary": "An AI-driven urban traffic management infrastructure in Delhi designed for optimizing signals, managing emergency corridors, and automatically enforcing traffic violations."
+  },
+  {
+    "id": 55,
+    "raw_topic": "55. India Demonstrates First Free-Space Quantum Key Distribution (QKD) Link",
+    "topic": "India Demonstrates First Free-Space Quantum Key Distribution (QKD) Link",
+    "summary": "A secure communication technology using quantum mechanics principles to transmit tamper-proof cryptographic keys through open-air atmospheric optical channels over 5.56km."
+  },
+  {
+    "id": 56,
+    "raw_topic": "56. The Pneumonic Plague",
+    "topic": "The Pneumonic Plague",
+    "summary": "A highly virulent, lethal form of plague causing severe lung infection, capable of rapid person-to-person respiratory transmission if left untreated."
+  },
+  {
+    "id": 57,
+    "raw_topic": "57. The 2026 Nobel Prize in Physics",
+    "topic": "The 2026 Nobel Prize in Physics",
+    "summary": "Awarded for groundbreaking contributions to the IceCube Neutrino Observatory and the discovery of high-energy astrophysical neutrinos acting as cosmic messengers."
+  },
+  {
+    "id": 58,
+    "raw_topic": "58. The 2026 Nobel Prize in Chemistry",
+    "topic": "The 2026 Nobel Prize in Chemistry",
+    "summary": "Awarded for foundational discoveries of non-linear effects and asymmetric autocatalysis, enabling high-purity chiral synthesis in molecular chemistry and pharmaceutical manufacturing."
+  },
+  {
+    "id": 59,
+    "raw_topic": "59. NTPC's Nuclear Power Expansion",
+    "topic": "NTPC's Nuclear Power Expansion",
+    "summary": "A strategic diversification move by India's largest integrated power producer to build commercial nuclear plants, targeting 30 GW capacity by 2047."
+  },
+  {
+    "id": 60,
+    "raw_topic": "60. CERVAVAC: India's First Indigenous HPV Vaccine Receives WHO Prequal...",
+    "topic": "CERVAVAC: India's First Indigenous HPV Vaccine Receives WHO Prequal...",
+    "summary": "India's first indigenously developed, highly affordable quadrivalent human papillomavirus vaccine, prequalified by WHO to prevent cervical cancer and related diseases."
+  },
+  {
+    "id": 61,
+    "raw_topic": "61. Sex Reversal in Animals",
+    "topic": "Sex Reversal in Animals",
+    "summary": "A biological phenomenon where an organism's physical reproductive traits diverge from its genetic chromosomes, increasingly driven by climate-induced temperature stress."
+  },
+  {
+    "id": 62,
+    "raw_topic": "62. The PUFFINS Telescope Mission",
+    "topic": "The PUFFINS Telescope Mission",
+    "summary": "A NASA-funded small satellite mission carrying an ultraviolet telescope designed to study interstellar dust grains and map galactic magnetic fields."
+  },
+  {
+    "id": 63,
+    "raw_topic": "63. Kufri Jamunia - Biofortified Purple Potato",
+    "topic": "Kufri Jamunia - Biofortified Purple Potato",
+    "summary": "An indigenously developed, nutrient-dense potato variety featuring vibrant purple flesh, bred to be rich in antioxidants and vitamins to combat hidden hunger."
+  },
+  {
+    "id": 64,
+    "raw_topic": "64. The Martian Moons eXploration (MMX) Mission",
+    "topic": "The Martian Moons eXploration (MMX) Mission",
+    "summary": "A JAXA-led robotic space mission designed to collect and return regolith samples from Mars's moon Phobos to Earth by 2031."
+  },
+  {
+    "id": 65,
+    "raw_topic": "65. eMudhra Certificates",
+    "topic": "eMudhra Certificates",
+    "summary": "Digital security and identity certificates issued by an Indian certifying authority, recently blocked by global web browsers due to a cryptographic flaw."
+  },
+  {
+    "id": 66,
+    "raw_topic": "66. The Shamonda Virus",
+    "topic": "The Shamonda Virus",
+    "summary": "A vector-borne animal virus transmitted by midges, causing severe reproductive complications in livestock, with a recently documented rare human infection."
+  },
+  {
+    "id": 67,
+    "raw_topic": "67. Advanced Emergency Braking Systems (AEBS)",
+    "topic": "Advanced Emergency Braking Systems (AEBS)",
+    "summary": "An active vehicle safety technology that detects imminent collisions and automatically applies brakes to prevent or mitigate rear-end and pedestrian crashes."
+  },
+  {
+    "id": 68,
+    "raw_topic": "68. The NVS-03 Satellite",
+    "topic": "The NVS-03 Satellite",
+    "summary": "ISRO's second-generation navigation satellite featuring indigenous rubidium atomic clocks, designed to restore and expand the NavIC constellation's independent positioning capabilities."
+  },
+  {
+    "id": 69,
+    "raw_topic": "69. The FAO Committee on Forestry (COFO)",
+    "topic": "The FAO Committee on Forestry (COFO)",
+    "summary": "The highest statutory global intergovernmental body advising on sustainable forest management, policy dialogue, and international environmental collaboration under the UN."
+  },
+  {
+    "id": 70,
+    "raw_topic": "70. India's First PRAMAAN Certificates",
+    "topic": "India's First PRAMAAN Certificates",
+    "summary": "An indigenous certification standard for sustainable forest management, verifying agroforestry practices and ensuring compliance with stringent global deforestation-free timber trade regulations."
+  },
+  {
+    "id": 71,
+    "raw_topic": "71. The UN Declaration on Sea Level Rise",
+    "topic": "The UN Declaration on Sea Level Rise",
+    "summary": "A landmark global political declaration protecting the sovereign statehood, permanent maritime entitlements, and human rights of nations facing coastal land inundation."
+  },
+  {
+    "id": 72,
+    "raw_topic": "72. The New Corporate Average Fuel Economy (CAFE) Norms",
+    "topic": "The New Corporate Average Fuel Economy (CAFE) Norms",
+    "summary": "Regulatory standards capping fleet-average fuel consumption and carbon emissions for passenger vehicles to promote alternative fuels and electric vehicle adoption."
+  },
+  {
+    "id": 73,
+    "raw_topic": "73. First Tigress Released in Buxa Tiger Reserve",
+    "topic": "First Tigress Released in Buxa Tiger Reserve",
+    "summary": "A scientific conservation programme translocating tigers to restore a self-sustaining breeding population and ecological balance in West Bengal's Buxa Tiger Reserve."
+  },
+  {
+    "id": 74,
+    "raw_topic": "74. The Joint Crediting Mechanism (JCM)",
+    "topic": "The Joint Crediting Mechanism (JCM)",
+    "summary": "A bilateral framework between India and Japan designed to diffuse low-carbon technologies and generate verified, high-integrity greenhouse gas emission reduction credits."
+  },
+  {
+    "id": 75,
+    "raw_topic": "75. Forever Chemicals",
+    "topic": "Forever Chemicals",
+    "summary": "Highly persistent synthetic per- and polyfluoroalkyl substances (PFAS) that extensively contaminate water sources and pose significant bioaccumulative health and environmental risks."
+  },
+  {
+    "id": 76,
+    "raw_topic": "76. 10 Years of Kigali Amendment",
+    "topic": "10 Years of Kigali Amendment",
+    "summary": "An international treaty amendment mandating the phase-down of potent hydrofluorocarbons (HFCs) in refrigeration to prevent significant global temperature rise by 2100."
+  },
+  {
+    "id": 77,
+    "raw_topic": "77. India's Ramsar Sites Reach 103: Sukhna Wetland and Sauj Jheel Added",
+    "topic": "India's Ramsar Sites Reach 103: Sukhna Wetland and Sauj Jheel Added",
+    "summary": "The addition of a vital peri-urban reservoir in Chandigarh and a shallow floodplain lake in Uttar Pradesh to the Ramsar wetland list."
+  },
+  {
+    "id": 78,
+    "raw_topic": "78. The National Biodiversity Authority (NBA)",
+    "topic": "The National Biodiversity Authority (NBA)",
+    "summary": "A statutory body regulating biological resource access, promoting sustainable utilization, and ensuring equitable benefit-sharing with local conservation and tribal communities."
+  },
+  {
+    "id": 79,
+    "raw_topic": "79. PETA (People for the Ethical Treatment of Animals)",
+    "topic": "PETA (People for the Ethical Treatment of Animals)",
+    "summary": "An international animal rights NGO campaigning against animal cruelty in laboratories, factory agriculture, clothing industries, and commercial entertainment through legal advocacy."
+  },
+  {
+    "id": 80,
+    "raw_topic": "80. GRAP Stage I",
+    "topic": "GRAP Stage I",
+    "summary": "The foundational first tier of Delhi-NCR's Graded Response Action Plan, enforcing dust control and waste management when air quality hits the 'Poor' category."
+  },
+  {
+    "id": 81,
+    "raw_topic": "81. The Loss and Damage Fund",
+    "topic": "The Loss and Damage Fund",
+    "summary": "A multilateral climate finance mechanism assisting vulnerable developing countries in recovering from climate-induced economic and non-economic disasters through grant-based funding windows."
+  },
+  {
+    "id": 82,
+    "raw_topic": "82. The Himalayan Tahr",
+    "topic": "The Himalayan Tahr",
+    "summary": "A wild, cold-resilient mountain ungulate endemic to the high Himalayas, currently facing near-threatened status due to severe habitat and tourism pressures."
+  },
+  {
+    "id": 83,
+    "raw_topic": "83. The Snow Leopard",
+    "topic": "The Snow Leopard",
+    "summary": "A vulnerable apex predator adapted to high-altitude Central Asian mountains, surveyed recently to assess India's conservation efforts and total wild population."
+  },
+  {
+    "id": 84,
+    "raw_topic": "84. Herugavialis cairensis: 45-Million-Year-Old Gharial Relative Discovered...",
+    "topic": "Herugavialis cairensis: 45-Million-Year-Old Gharial Relative Discovered...",
+    "summary": "An extinct prehistoric crocodilian with an elongated snout, uniquely adapted for marine saltwater environments during the ancient Middle Eocene Epoch."
+  },
+  {
+    "id": 85,
+    "raw_topic": "85. The Sarus Crane",
+    "topic": "The Sarus Crane",
+    "summary": "The world's tallest flying bird and India's only resident breeding crane, widely known for lifelong monogamy and its vulnerability in agro-ecosystems."
+  },
+  {
+    "id": 86,
+    "raw_topic": "86. Project Seabird",
+    "topic": "Project Seabird",
+    "summary": "The Indian Navy's massive infrastructure project establishing a modern, sustainable deep-water naval base at Karwar for strategic fleet deployment and maintenance."
+  },
+  {
+    "id": 87,
+    "raw_topic": "87. The Land Warfare Doctrine",
+    "topic": "The Land Warfare Doctrine",
+    "summary": "A strategic document outlining the Indian Army's operational principles, focusing heavily on multi-domain operations, emerging technologies, drone integration, and Aatmanirbharta."
+  },
+  {
+    "id": 88,
+    "raw_topic": "88. Operation Drishti",
+    "topic": "Operation Drishti",
+    "summary": "A flagship humanitarian medical initiative by the Indian Armed Forces providing free, advanced sight-restoring eye surgeries to populations in remote border regions."
+  },
+  {
+    "id": 89,
+    "raw_topic": "89. The 2026 Nobel Prize in Physiology or Medicine",
+    "topic": "The 2026 Nobel Prize in Physiology or Medicine",
+    "summary": "Awarded for discoveries concerning light-gated ion channels and optogenetics, allowing precise light-based control of neurons for complex clinical and neurological applications."
+  },
+  {
+    "id": 90,
+    "raw_topic": "90. The 2026 Nobel Prize in Literature",
+    "topic": "The 2026 Nobel Prize in Literature",
+    "summary": "Conferred upon renowned Canadian poet, translator, and classicist Anne Carson for brilliantly blending ancient literature with modern experimental writing styles."
+  },
+  {
+    "id": 91,
+    "raw_topic": "91. The 2026 Nobel Peace Prize",
+    "topic": "The 2026 Nobel Peace Prize",
+    "summary": "Awarded to distinguished South African jurist Navanethem Navi Pillay for her lifelong, dedicated efforts to promote peace and uphold international law."
+  },
+  {
+    "id": 92,
+    "raw_topic": "92. The Nobel Prize in Economic Sciences 2026",
+    "topic": "The Nobel Prize in Economic Sciences 2026",
+    "summary": "Awarded jointly to Robert E. Hall and Michael Woodford for their outstanding, foundational contributions to macroeconomic theory and modern political economy."
+  },
+  {
+    "id": 93,
+    "raw_topic": "93. Ethiopia",
+    "topic": "Ethiopia",
+    "summary": "A populous, landlocked federal democratic republic in the Horn of Africa, currently experiencing renewed internal conflict, ethnic tensions, and civil unrest."
+  },
+  {
+    "id": 94,
+    "raw_topic": "94. The Dakhla Oasis",
+    "topic": "The Dakhla Oasis",
+    "summary": "A historic agricultural hub located in Egypt's Western Desert, where an ancient Roman-era mud-brick pyramid-shaped tomb was recently uncovered by archaeologists."
+  },
+  {
+    "id": 95,
+    "raw_topic": "95. Italy",
+    "topic": "Italy",
+    "summary": "A southern European parliamentary republic characterized geographically by the Alps, Apennines, a vast agricultural plain, and an active Mediterranean volcanic landscape."
+  },
+  {
+    "id": 96,
+    "raw_topic": "96. The Caspian Sea",
+    "topic": "The Caspian Sea",
+    "summary": "The world's largest inland water body, currently experiencing accelerating declining water levels while seeing increased maritime transit and oil exports from Iran."
+  },
+  {
+    "id": 97,
+    "raw_topic": "97. The Gandak River",
+    "topic": "The Gandak River",
+    "summary": "A major transboundary Himalayan river forming a vast fluvial megafan in India, prone to severe seasonal flooding and destructive embankment breaches."
+  },
+  {
+    "id": 98,
+    "raw_topic": "98. The Marshall Islands",
+    "topic": "The Marshall Islands",
+    "summary": "An archipelagic Pacific nation facing severe climate vulnerability and continuing long-term health and environmental consequences from historical US thermonuclear testing programs."
+  },
+  {
+    "id": 99,
+    "raw_topic": "99. The Black Sea",
+    "topic": "The Black Sea",
+    "summary": "An inland sea connecting Europe and Asia, featuring a deep anoxic basin and strategic shipping routes heavily impacted by regional military conflicts."
+  },
+  {
+    "id": 100,
+    "raw_topic": "100. Ghana",
+    "topic": "Ghana",
+    "summary": "A resource-rich West African republic seeking BRICS membership to diversify partnerships, historically celebrated as the first sub-Saharan nation to achieve independence."
+  },
+  {
+    "id": 101,
+    "raw_topic": "101. The Arctic Ocean",
+    "topic": "The Arctic Ocean",
+    "summary": "The smallest, shallowest ocean, covered by a dynamic layer of drifting sea ice, which recently tied its tenth-lowest extent in satellite tracking records."
+  },
+  {
+    "id": 102,
+    "raw_topic": "102. Saudi Arabia",
+    "topic": "Saudi Arabia",
+    "summary": "An absolute monarchy in the Arabian Peninsula, holding vast oil reserves and Islam's holiest sites, currently navigating airspace threats from regional conflicts."
+  },
+  {
+    "id": 103,
+    "raw_topic": "103. Costa Rica",
+    "topic": "Costa Rica",
+    "summary": "A peaceful Central American republic known for abolishing its army, its rich biodiversity, and hosting India's newly established resident diplomatic mission."
+  },
+  {
+    "id": 104,
+    "raw_topic": "104. Panama",
+    "topic": "Panama",
+    "summary": "A Central American nation hosting the vital Panama Canal, recently impacted by powerful earthquakes and aftershocks due to high tectonic vulnerability."
+  },
+  {
+    "id": 105,
+    "raw_topic": "105. The Kamchatka Peninsula",
+    "topic": "The Kamchatka Peninsula",
+    "summary": "A highly active volcanic peninsula in the Russian Far East, characterized by frequent high-magnitude earthquakes, geothermal geysers, and rich sub-arctic biodiversity."
+  },
+  {
+    "id": 106,
+    "raw_topic": "106. The Baltic Sea",
+    "topic": "The Baltic Sea",
+    "summary": "The world's largest brackish water body in Northern Europe, currently facing severe eutrophication, oxygen-depleted seabed challenges, and critical fish stock declines."
+  },
+  {
+    "id": 107,
+    "raw_topic": "107. Venezuela",
+    "topic": "Venezuela",
+    "summary": "A South American nation possessing the world's largest proven petroleum reserves, diverse geography, and currently experiencing shifting global oil diplomacy and trade."
+  },
+  {
+    "id": 108,
+    "raw_topic": "108. The Skjern River",
+    "topic": "The Skjern River",
+    "summary": "Denmark's largest river by volume, celebrated globally for a massive ecological restoration project successfully reviving its natural meanders, floodplains, and wetlands."
+  },
+  {
+    "id": 109,
+    "raw_topic": "109. Tibet",
+    "topic": "Tibet",
+    "summary": "A vast, high-altitude plateau in Central Asia, known as the \"Water Tower of Asia,\" recently struck by a powerful and destructive 7.0-magnitude earthquake."
+  },
+  {
+    "id": 110,
+    "raw_topic": "110. The Jordan",
+    "topic": "The Jordan",
+    "summary": "A water-scarce Arab monarchy in the Levant, featuring the hypersaline Dead Sea, historical Petra, and a large, expansive desert plateau environment."
+  },
+  {
+    "id": 111,
+    "raw_topic": "111. Jawahar Dweep",
+    "topic": "Jawahar Dweep",
+    "summary": "A restricted offshore marine oil terminal in Mumbai Harbour, recently declared India's first completely plastic-free bulk hydrocarbon transport and handling facility."
+  },
+  {
+    "id": 112,
+    "raw_topic": "112. Desert National Park (DNP)",
+    "topic": "Desert National Park (DNP)",
+    "summary": "A large protected area in Rajasthan's fragile Thar Desert, serving as a vital sanctuary for endangered endemic species like the Great Indian Bustard."
+  },
+  {
+    "id": 113,
+    "raw_topic": "113. Veerangana Durgavati Tiger Reserve (VDTR)",
+    "topic": "Veerangana Durgavati Tiger Reserve (VDTR)",
+    "summary": "Madhya Pradesh's largest tiger reserve, integrating dry deciduous forests and grasslands, currently serving as a new reintroduction and acclimatization site for translocated cheetahs."
+  },
+  {
+    "id": 114,
+    "raw_topic": "114. Nanda Devi Biosphere Reserve (NDBR)",
+    "topic": "Nanda Devi Biosphere Reserve (NDBR)",
+    "summary": "A highly protected, high-altitude Himalayan biosphere and UNESCO site in Uttarakhand, facing increasing ecological vulnerability to landslides in its pristine core zone."
+  },
+  {
+    "id": 115,
+    "raw_topic": "115. Kappatagudda Wildlife Sanctuary",
+    "topic": "Kappatagudda Wildlife Sanctuary",
+    "summary": "A prominent wildlife sanctuary in northern Karnataka, exceptionally rich in medicinal plants, successfully resisting destructive commercial mining proposals in its eco-sensitive zone."
+  },
+  {
+    "id": 116,
+    "raw_topic": "116. The Barda Wildlife Sanctuary",
+    "topic": "The Barda Wildlife Sanctuary",
+    "summary": "A hilly protected forest in Gujarat, renowned as a natural barrier against coastal salinity and recently reclaimed by Asiatic lions after 144 years."
+  }
+]
