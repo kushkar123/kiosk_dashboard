@@ -418,11 +418,8 @@ def flashcard():
     except Exception:
         return jsonify({"german": "Keine Daten", "english": "No data", "sentence": "Check german_words.txt format."})
 
-_german_word_pointer = 0
-
 @app.route('/api/german-screensaver')
 def german_screensaver():
-    global _german_word_pointer
     try:
         base_dir = os.path.dirname(os.path.abspath(__file__))
         file_path = os.path.join(base_dir, 'german_words.txt')
@@ -442,14 +439,10 @@ def german_screensaver():
                 parsed.append({"german": parts[0], "english": parts[1], "sentence": ""})
 
         total = len(parsed)
-        selected = []
-        # Select 3 sequential words from pointer so no word repeats in an iteration
-        for i in range(3):
-            idx = (_german_word_pointer + i) % total
-            selected.append(parsed[idx])
-
-        # Advance pointer by 3 for next cycle
-        _german_word_pointer = (_german_word_pointer + 3) % total
+        # Select 3 jumbled and random words (distinct)
+        sample_size = min(3, total)
+        selected = random.sample(parsed, sample_size)
+        random.shuffle(selected)
             
         return jsonify(selected)
     except Exception:
@@ -460,11 +453,8 @@ def german_screensaver():
         ]
         return jsonify(fallback)
 
-_topic_pointer = 0
-
 @app.route('/api/topics')
 def get_topics():
-    global _topic_pointer
     try:
         base_dir = os.path.dirname(os.path.abspath(__file__))
         json_path = os.path.join(base_dir, 'topics.json')
@@ -495,17 +485,13 @@ def get_topics():
         if total == 0:
             raise ValueError
 
-        selected = []
-        for i in range(2):
-            idx = (_topic_pointer + i) % total
-            selected.append(items[idx])
-
-        # Advance pointer by 2 for next cycle
-        _topic_pointer = (_topic_pointer + 2) % total
+        # Select 2 distinct random and jumbled topics
+        sample_size = min(2, total)
+        selected = random.sample(items, sample_size)
+        random.shuffle(selected)
 
         return jsonify({
             "topics": selected,
-            "next_pointer": _topic_pointer,
             "total": total
         })
     except Exception:
