@@ -44,3 +44,25 @@ geben (v) | to give
 vergessen (v) | to forget
 versuchen (v) | to try
 schauen (v) | to look
+das Jahr (n) | year
+die Stunde (n) | hour
+die Welt (n) | world
+das Feuer (n) | fire
+der Platz (n) | place
+schlecht (adj) | bad
+toll (adj) | great
+ruhig (adj) | calm
+bereit (adj) | ready
+schwer (adj) | difficult
+wichtig (adj) | important
+ehrlich (adj) | honest
+sicher (adj) | safe
+einfach (adj) | simple
+wahr (adj) | true
+vielleicht (adv) | maybe
+sogar (adv) | even
+etwa (adv) | approx
+echt (adj/adv) | really
+bloß (adv) | merely
+genau (adj/adv) | exactly
+ziemlich (adv) | quite
